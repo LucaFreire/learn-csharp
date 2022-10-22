@@ -1,0 +1,199 @@
+Tipagens:
+Estática: alterar o tipo de variável após declara não é possivel
+Dinamica: A linguagem escolhe o tipo de dado de acordo com o valor atribuido
+
+Fraca: Realiza conversões automaticamente entre diferentes tipos de dados
+Forte: Não realizam conversões automaticamente e
+, não permite um mesmo dado ser tratado
+como se fosse de outro tipo
+
+Compilar: Gera uma linguagem de maquina que é executada diretamente pelo sistema
+operacional ou pelo processador
+Interpretado: Roda em outro programa (interpretador), deve-se mandar o código fonte para
+rodar e a outra deve ter o interpretador
+Transpilado: Converte de uma linguagem para outra
+
+CSharp: Forte e estática, mas não entra em nenhuma das 3 outras, ela cria uma maquina
+virtual para interpretar e transformar em linguagem de maquina (compilar apenas o que será
+utilizado), mas antes de passar para o computador, ele compila para uma linguagem
+intermediaria que é bem mais proxima da de maquina (C# -> IL), ou seja, é todas ao mesmo
+tempo (JIT)
+.NET Framework: biblioteca enorme feita pela microsoft para C#, foi até 4.9
+.NET Core: novo .NET Framework, para frente de 5.0
+
+&& and
+|| or
+! not
+
+uLong: 8
+uInt: 4
+uShort: 2
+SByte: 1 byte
+
+Float 4
+Double 8
+Decimal 16
+
+Stack: fica na ram, muito mais rapido de acessar (pilha)
+Heap: fica "por baixo" do stack, mais lento de acessar (monte)
+Stack overflow: "Roubou" o espaço do Heap
+
+Dentro do heap - garbage collector vai passando (sobreviveu as passadas do gc)
+Geração 0: dados pouco utilizados
+Geração 1: mais utilizados que a 0
+Geração 2: muito utilizados, objetos grandes
+
+===================================================================================
+using System;
+
+!!classe
+Propriedades = Variáveis
+Métodos = Função
+!!
+arquivo.csc
+
+ctrl+k+c comenta tudo e ctrl+; descomenta
+dotnet new console //iniciar a usar C#
+dotnet new --list // mostra templates disponíveis
+dotnet clean // tira as compilações
+dotnet build //compila sem rodar
+dotnet run //compila e roda
+clear // limpa o console
+
+char c = 'a'; // para saber o maior valor possível = short.MaxValue
+byte b = 255; // sem sinal e se colocar s (signed) na frente coloca sinal
+short s = 32767;
+int i = 2147483647;
+long l = 9223372036854775807; // se colocar u (unsigned) na frente tira o sinal, aumentando um pouco do quanto salva "ulong"
+l = (int)(l); // forçar mudança de váriavel, se não der para transformar dá overflow, transformando-o no valor mínimo, checked força erro se der overflow
+bool b1 = true;
+bool b2 = false;
+float f = 2f; // tem que colocar o fe atras para indicar que é float
+double d = 2.5;
+double d1 = double.NegativeInfinity;
+double d2 = double.Epsilon; // menor valor positivo
+decimal m = 5.0m; // aceita números muito pequenos (para juros)
+object obj = s; // aceita tudo
+dynamic dy = 8; // váriavel igual do python
+dy = "Olá, mundo!";
+var x = 7; // ele descobre o tipo, ele identifica que 7 é int
+int[] arr = new int[10]; // cria um vetor de tamanho 10
+arr[0] = 4;
+arr[arr.Length - 1] = 6;
+int? y = null;
+Console.WriteLine(y ?? 7); // se y for nulo, coloque 7
+
+string str = "Texto ultilize string!"; //Utilizar aspas duplas
+byte b = 200;
+short s = 1000;
+char letra = 'A'; //Char: Apenas uma letra e uilizar aspas simples
+int v1 = 17; //Números Menores
+long v2 = 100000000000; //Números Maior
+Tipo un: Só aceita num positivo
+sbyte sb = -100;//Num negativo em byte
+ushort us = 1000; 
+uint uv1 = 17; 
+ulong uv2 = 100000000000
+
+//Tipo bool
+bool b1 = true;
+bool b2 = fals
+
+float f = float.PositiveInfinity;
+double d = double.Epsilon; //double: Aceita num maiores e é mais preci
+
+
+object obj = st
+dynamic dy = 8; // Identifica o tipo
+dy = "Texto"
+
+var x = "7"
+
+//Criação de Lista
+int[] arr = new int[10]
+arr[0] = 5; //Igual pyth
+
+//Aceita nul
+int? y = null; 
+string s1 = null;
+string s2 = s1?.Replace('a','b') ?? "Erro
+Console.WriteLine(s2);
+
+
+
+
+
+========================================================================
+!!for
+
+for (i=0; i<11; i++){
+    Console.WriteLine(i);
+}
+
+!!Se o for ser apenas uma linha de execução, não é necessário as chaves
+
+for (i=0, i<11; i++)
+    Console.WriteLine(i);
+
+!!for percorrer uma lista
+
+int[] lista = new int[] {1,2,3,4,5}
+
+foreach (int i in lista)
+    Console.WriteLine(i);
+
+==========================================================================
+!!while
+
+while(true){
+    Console.WriteLine("Sem o break, executa infinitamente");
+}
+
+==
+
+while(true)
+    Console.WriteLine("Sem o break, executa infinitamente");
+
+!!while com condição
+
+int num = 1;
+while(num<11){
+    Console.WriteLine(num);
+    num++; // == num+=1
+    }
+
+==========================================================================
+!!switch
+
+Console.Write("Digite Seu Nome: "); //WriteLine: Quebra Linha
+string Texto = Console.ReadLine();
+
+Console.Write("Tempo na Programação (anos): ");
+int Numero = Convert.ToInt32(Console.ReadLine()); //É necessário convert p/ reconhecer o num
+
+string Situacao;
+switch(Numero){
+    case 0:
+        Situacao ="Começando";
+        break;
+    case 1:
+        Situacao ="Novato!";
+        break;
+    case 2:
+        Situacao ="Aprendiz!";
+        break;
+    case 3:
+        Situacao ="Júnior";
+        break;
+    case 4:
+        Situacao ="Pleno";
+        break;
+    default: // Também pode ser utilizado como um else
+        Situacao ="Senior";
+        break;
+}                            \n: Quebra linha, igual python
+Console.Write($"Nome: {Texto}\nTempo Programando: {Numero} Ano(s)\nSituação: {Situacao}"); 
+
+==============================================================================================
+
+

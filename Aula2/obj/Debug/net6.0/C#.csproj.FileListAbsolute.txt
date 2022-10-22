@@ -1,0 +1,30 @@
+S:\COM\Human_Resources\01.Engineering_Tech_School\02.Internal\10 - Aprendizes\14 - Desenvolvimento de sistemas 2022\Lucas Freire\C#\Aula2\bin\Debug\net6.0\C#.exe
+S:\COM\Human_Resources\01.Engineering_Tech_School\02.Internal\10 - Aprendizes\14 - Desenvolvimento de sistemas 2022\Lucas Freire\C#\Aula2\bin\Debug\net6.0\C#.deps.json
+S:\COM\Human_Resources\01.Engineering_Tech_School\02.Internal\10 - Aprendizes\14 - Desenvolvimento de sistemas 2022\Lucas Freire\C#\Aula2\bin\Debug\net6.0\C#.runtimeconfig.json
+S:\COM\Human_Resources\01.Engineering_Tech_School\02.Internal\10 - Aprendizes\14 - Desenvolvimento de sistemas 2022\Lucas Freire\C#\Aula2\bin\Debug\net6.0\C#.dll
+S:\COM\Human_Resources\01.Engineering_Tech_School\02.Internal\10 - Aprendizes\14 - Desenvolvimento de sistemas 2022\Lucas Freire\C#\Aula2\bin\Debug\net6.0\C#.pdb
+S:\COM\Human_Resources\01.Engineering_Tech_School\02.Internal\10 - Aprendizes\14 - Desenvolvimento de sistemas 2022\Lucas Freire\C#\Aula2\obj\Debug\net6.0\C#.csproj.AssemblyReference.cache
+S:\COM\Human_Resources\01.Engineering_Tech_School\02.Internal\10 - Aprendizes\14 - Desenvolvimento de sistemas 2022\Lucas Freire\C#\Aula2\obj\Debug\net6.0\C#.GeneratedMSBuildEditorConfig.editorconfig
+S:\COM\Human_Resources\01.Engineering_Tech_School\02.Internal\10 - Aprendizes\14 - Desenvolvimento de sistemas 2022\Lucas Freire\C#\Aula2\obj\Debug\net6.0\C#.AssemblyInfoInputs.cache
+S:\COM\Human_Resources\01.Engineering_Tech_School\02.Internal\10 - Aprendizes\14 - Desenvolvimento de sistemas 2022\Lucas Freire\C#\Aula2\obj\Debug\net6.0\C#.AssemblyInfo.cs
+S:\COM\Human_Resources\01.Engineering_Tech_School\02.Internal\10 - Aprendizes\14 - Desenvolvimento de sistemas 2022\Lucas Freire\C#\Aula2\obj\Debug\net6.0\C#.csproj.CoreCompileInputs.cache
+S:\COM\Human_Resources\01.Engineering_Tech_School\02.Internal\10 - Aprendizes\14 - Desenvolvimento de sistemas 2022\Lucas Freire\C#\Aula2\obj\Debug\net6.0\C#.dll
+S:\COM\Human_Resources\01.Engineering_Tech_School\02.Internal\10 - Aprendizes\14 - Desenvolvimento de sistemas 2022\Lucas Freire\C#\Aula2\obj\Debug\net6.0\refint\C#.dll
+S:\COM\Human_Resources\01.Engineering_Tech_School\02.Internal\10 - Aprendizes\14 - Desenvolvimento de sistemas 2022\Lucas Freire\C#\Aula2\obj\Debug\net6.0\C#.pdb
+S:\COM\Human_Resources\01.Engineering_Tech_School\02.Internal\10 - Aprendizes\14 - Desenvolvimento de sistemas 2022\Lucas Freire\C#\Aula2\obj\Debug\net6.0\C#.genruntimeconfig.cache
+S:\COM\Human_Resources\01.Engineering_Tech_School\02.Internal\10 - Aprendizes\14 - Desenvolvimento de sistemas 2022\Lucas Freire\C#\Aula2\obj\Debug\net6.0\ref\C#.dll
+C:\Users\ABC\Documents\Linguagens - Tudo\Csharp\Aula2\obj\Debug\net6.0\C#.csproj.AssemblyReference.cache
+C:\Users\ABC\Documents\Linguagens - Tudo\Csharp\Aula2\obj\Debug\net6.0\C#.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ABC\Documents\Linguagens - Tudo\Csharp\Aula2\obj\Debug\net6.0\C#.AssemblyInfoInputs.cache
+C:\Users\ABC\Documents\Linguagens - Tudo\Csharp\Aula2\obj\Debug\net6.0\C#.AssemblyInfo.cs
+C:\Users\ABC\Documents\Linguagens - Tudo\Csharp\Aula2\obj\Debug\net6.0\C#.csproj.CoreCompileInputs.cache
+C:\Users\ABC\Documents\Linguagens - Tudo\Csharp\Aula2\obj\Debug\net6.0\C#.dll
+C:\Users\ABC\Documents\Linguagens - Tudo\Csharp\Aula2\obj\Debug\net6.0\refint\C#.dll
+C:\Users\ABC\Documents\Linguagens - Tudo\Csharp\Aula2\obj\Debug\net6.0\C#.pdb
+C:\Users\ABC\Documents\Linguagens - Tudo\Csharp\Aula2\bin\Debug\net6.0\C#.exe
+C:\Users\ABC\Documents\Linguagens - Tudo\Csharp\Aula2\bin\Debug\net6.0\C#.deps.json
+C:\Users\ABC\Documents\Linguagens - Tudo\Csharp\Aula2\bin\Debug\net6.0\C#.runtimeconfig.json
+C:\Users\ABC\Documents\Linguagens - Tudo\Csharp\Aula2\bin\Debug\net6.0\C#.dll
+C:\Users\ABC\Documents\Linguagens - Tudo\Csharp\Aula2\bin\Debug\net6.0\C#.pdb
+C:\Users\ABC\Documents\Linguagens - Tudo\Csharp\Aula2\obj\Debug\net6.0\C#.genruntimeconfig.cache
+C:\Users\ABC\Documents\Linguagens - Tudo\Csharp\Aula2\obj\Debug\net6.0\ref\C#.dll

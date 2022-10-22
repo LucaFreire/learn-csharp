@@ -1,0 +1,5 @@
+S:\COM\Human_Resources\01.Engineering_Tech_School\02.Internal\10 - Aprendizes\14 - Desenvolvimento de sistemas 2022\Lucas Freire\C#\Estudo_class\obj\Debug\net6.0\Estudo_class.csproj.AssemblyReference.cache
+S:\COM\Human_Resources\01.Engineering_Tech_School\02.Internal\10 - Aprendizes\14 - Desenvolvimento de sistemas 2022\Lucas Freire\C#\Estudo_class\obj\Debug\net6.0\Estudo_class.GeneratedMSBuildEditorConfig.editorconfig
+S:\COM\Human_Resources\01.Engineering_Tech_School\02.Internal\10 - Aprendizes\14 - Desenvolvimento de sistemas 2022\Lucas Freire\C#\Estudo_class\obj\Debug\net6.0\Estudo_class.AssemblyInfoInputs.cache
+S:\COM\Human_Resources\01.Engineering_Tech_School\02.Internal\10 - Aprendizes\14 - Desenvolvimento de sistemas 2022\Lucas Freire\C#\Estudo_class\obj\Debug\net6.0\Estudo_class.AssemblyInfo.cs
+S:\COM\Human_Resources\01.Engineering_Tech_School\02.Internal\10 - Aprendizes\14 - Desenvolvimento de sistemas 2022\Lucas Freire\C#\Estudo_class\obj\Debug\net6.0\Estudo_class.csproj.CoreCompileInputs.cache
