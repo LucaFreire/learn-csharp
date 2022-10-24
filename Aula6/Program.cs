@@ -93,24 +93,6 @@ public class LinkedListNode<T>
 
 // num.Sqrt().Print();
 
-// public static class MyExtensionsMethods{
-//     public static double Sqrt(this double x){
-//         return Math.Sqrt(x);
-//     }
-//     public static void Print<T>(this T obj){
-//         Console.WriteLine(obj);
-//     }
-//     public static List<int> Take<T>(this List<int> list, int N){
-
-//         for (int i =0; i < N && i < list.Count; i++){
-
-//             result.Add(list[i]);
-//         }
-//         return result;
-//  }
-// }
-
-
 public static class MyExtensionsMethods{
 
     public static double Sqrt(this double x){ // Função de Raiz
@@ -143,21 +125,4 @@ public static class MyExtensionsMethods{
     }
     
 }
-
-
-
-
-public class Tree{
-
-    public int Direito;
-    public int Esquerdo;
-
-
-}
-
-
-
-
-
-
 
