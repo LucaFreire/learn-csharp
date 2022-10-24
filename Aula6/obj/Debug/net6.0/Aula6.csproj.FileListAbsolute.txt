@@ -1,0 +1,15 @@
+S:\COM\Human_Resources\01.Engineering_Tech_School\02.Internal\10 - Aprendizes\14 - Desenvolvimento de sistemas 2022\Lucas Freire\Csharp\Aula6\obj\Debug\net6.0\Aula6.csproj.AssemblyReference.cache
+S:\COM\Human_Resources\01.Engineering_Tech_School\02.Internal\10 - Aprendizes\14 - Desenvolvimento de sistemas 2022\Lucas Freire\Csharp\Aula6\obj\Debug\net6.0\Aula6.GeneratedMSBuildEditorConfig.editorconfig
+S:\COM\Human_Resources\01.Engineering_Tech_School\02.Internal\10 - Aprendizes\14 - Desenvolvimento de sistemas 2022\Lucas Freire\Csharp\Aula6\obj\Debug\net6.0\Aula6.AssemblyInfoInputs.cache
+S:\COM\Human_Resources\01.Engineering_Tech_School\02.Internal\10 - Aprendizes\14 - Desenvolvimento de sistemas 2022\Lucas Freire\Csharp\Aula6\obj\Debug\net6.0\Aula6.AssemblyInfo.cs
+S:\COM\Human_Resources\01.Engineering_Tech_School\02.Internal\10 - Aprendizes\14 - Desenvolvimento de sistemas 2022\Lucas Freire\Csharp\Aula6\obj\Debug\net6.0\Aula6.csproj.CoreCompileInputs.cache
+S:\COM\Human_Resources\01.Engineering_Tech_School\02.Internal\10 - Aprendizes\14 - Desenvolvimento de sistemas 2022\Lucas Freire\Csharp\Aula6\bin\Debug\net6.0\Aula6.exe
+S:\COM\Human_Resources\01.Engineering_Tech_School\02.Internal\10 - Aprendizes\14 - Desenvolvimento de sistemas 2022\Lucas Freire\Csharp\Aula6\bin\Debug\net6.0\Aula6.deps.json
+S:\COM\Human_Resources\01.Engineering_Tech_School\02.Internal\10 - Aprendizes\14 - Desenvolvimento de sistemas 2022\Lucas Freire\Csharp\Aula6\bin\Debug\net6.0\Aula6.runtimeconfig.json
+S:\COM\Human_Resources\01.Engineering_Tech_School\02.Internal\10 - Aprendizes\14 - Desenvolvimento de sistemas 2022\Lucas Freire\Csharp\Aula6\bin\Debug\net6.0\Aula6.dll
+S:\COM\Human_Resources\01.Engineering_Tech_School\02.Internal\10 - Aprendizes\14 - Desenvolvimento de sistemas 2022\Lucas Freire\Csharp\Aula6\bin\Debug\net6.0\Aula6.pdb
+S:\COM\Human_Resources\01.Engineering_Tech_School\02.Internal\10 - Aprendizes\14 - Desenvolvimento de sistemas 2022\Lucas Freire\Csharp\Aula6\obj\Debug\net6.0\Aula6.dll
+S:\COM\Human_Resources\01.Engineering_Tech_School\02.Internal\10 - Aprendizes\14 - Desenvolvimento de sistemas 2022\Lucas Freire\Csharp\Aula6\obj\Debug\net6.0\refint\Aula6.dll
+S:\COM\Human_Resources\01.Engineering_Tech_School\02.Internal\10 - Aprendizes\14 - Desenvolvimento de sistemas 2022\Lucas Freire\Csharp\Aula6\obj\Debug\net6.0\Aula6.pdb
+S:\COM\Human_Resources\01.Engineering_Tech_School\02.Internal\10 - Aprendizes\14 - Desenvolvimento de sistemas 2022\Lucas Freire\Csharp\Aula6\obj\Debug\net6.0\Aula6.genruntimeconfig.cache
+S:\COM\Human_Resources\01.Engineering_Tech_School\02.Internal\10 - Aprendizes\14 - Desenvolvimento de sistemas 2022\Lucas Freire\Csharp\Aula6\obj\Debug\net6.0\ref\Aula6.dll
