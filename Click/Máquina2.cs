@@ -5,6 +5,6 @@ public class Maquina2 : Maquinas
         this.Nome = "Máquina Média";
         this.Preco = 500;
         this.Incremento += 3;
-        this.Codigo = "2D2";
+        this.Codigo = ConsoleKey.D2;
     } 
 }

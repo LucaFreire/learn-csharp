@@ -5,6 +5,6 @@ public class Maquina4 : Maquinas
         this.Nome = "Máquina Forte Plus";
         this.Preco = 4000;
         this.Incremento += 5;
-        this.Codigo = "4D4";
+        this.Codigo = ConsoleKey.D4;
     }
 }

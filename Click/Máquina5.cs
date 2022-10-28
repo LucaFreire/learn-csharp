@@ -5,6 +5,6 @@ public class Maquina5 : Maquinas
         this.Nome = "Máquina Poggers";
         this.Preco = 5000;
         this.Incremento += 10;
-        this.Codigo = "5D5";
+        this.Codigo = ConsoleKey.D5;
     }
 }

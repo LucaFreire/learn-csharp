@@ -5,6 +5,6 @@ public class Maquina1 : Maquinas
         this.Nome = "Máquina Fraca";
         this.Preco = 200;        
         this.Incremento += 2;
-        this.Codigo = "1D1";
+        this.Codigo = ConsoleKey.D1;
     }
 }

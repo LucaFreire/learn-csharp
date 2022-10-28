@@ -5,6 +5,6 @@ public class Maquina3 : Maquinas
         this.Nome = "Máquina Forte";
         this.Preco = 1000;
         this.Incremento += 4;
-        this.Codigo = "3D3";
+        this.Codigo = ConsoleKey.D3;
     }
 }

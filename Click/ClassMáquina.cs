@@ -3,5 +3,5 @@
     public string Nome { get; set; }
     public int Preco { get; set; }
     public int Incremento { get; set; }
-    public string Codigo { get; set; }
+    public System.ConsoleKey Codigo { get; set; }
 }
