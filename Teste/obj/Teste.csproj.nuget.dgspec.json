@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ABC\\Documents\\Linguagens - Tudo\\Csharp\\Click\\Switchg.csproj": {}
+    "C:\\Users\\ABC\\Documents\\Linguagens - Tudo\\Csharp\\Teste\\Teste.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ABC\\Documents\\Linguagens - Tudo\\Csharp\\Click\\Switchg.csproj": {
+    "C:\\Users\\ABC\\Documents\\Linguagens - Tudo\\Csharp\\Teste\\Teste.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ABC\\Documents\\Linguagens - Tudo\\Csharp\\Click\\Switchg.csproj",
-        "projectName": "Switchg",
-        "projectPath": "C:\\Users\\ABC\\Documents\\Linguagens - Tudo\\Csharp\\Click\\Switchg.csproj",
+        "projectUniqueName": "C:\\Users\\ABC\\Documents\\Linguagens - Tudo\\Csharp\\Teste\\Teste.csproj",
+        "projectName": "Teste",
+        "projectPath": "C:\\Users\\ABC\\Documents\\Linguagens - Tudo\\Csharp\\Teste\\Teste.csproj",
         "packagesPath": "C:\\Users\\ABC\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ABC\\Documents\\Linguagens - Tudo\\Csharp\\Click\\obj\\",
+        "outputPath": "C:\\Users\\ABC\\Documents\\Linguagens - Tudo\\Csharp\\Teste\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\ABC\\AppData\\Roaming\\NuGet\\NuGet.Config"

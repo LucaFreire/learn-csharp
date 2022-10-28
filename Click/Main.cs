@@ -1,11 +1,18 @@
 Player Jogador = new Player();
-Maquina1 Maq1 = new Maquina1();
-Maquina2 Maq2 = new Maquina2();
-Maquina3 Maq3 = new Maquina3();
-Maquina4 Maq4 = new Maquina4();
-Maquina5 Maq5 = new Maquina5();
 
 var ListaMaquinas = new List<Maquinas>();
+
+Maquina1 Maq1 = new Maquina1(); 
+Maquina2 Maq2 = new Maquina2(); 
+Maquina3 Maq3 = new Maquina3(); 
+Maquina4 Maq4 = new Maquina4(); 
+Maquina5 Maq5 = new Maquina5(); 
+
+ListaMaquinas.Add(Maq1);
+ListaMaquinas.Add(Maq2);
+ListaMaquinas.Add(Maq3);
+ListaMaquinas.Add(Maq4);
+ListaMaquinas.Add(Maq5);
 
 
 
@@ -15,82 +22,38 @@ while (true)
     Console.WriteLine($"Seu Dinheiro: {Jogador.Dinheiro}");
     Console.WriteLine("Digite 0 P/ Lucrar!\n1P/ Loja");
 
-    var Tecla  = Console.ReadKey().Key;
+    ConsoleKeyInfo Tecla;
+    Tecla = Console.ReadKey();
 
-    
 
-    if (Tecla == ConsoleKey.D0)
-    {
+    if (Tecla.Key.ToString() == "0")
         Jogador.Dinheiro+=Jogador.ClicksJogador;
-    }
-
-    else if (Tecla == ConsoleKey.D1)
-        {   
+    
+    else if (Tecla.ToString() == "1D1")
+        { 
             Console.Clear();
 
-            Console.WriteLine($"1 - Máquina Fraca R${Maq1.Preco}\n2 - Máquina Melhorada R${Maq2.Preco}\n3 - Máquina Forte R${Maq3.Preco}\n4 - Máquina Forte Plus R${Maq4.Preco}\n5 - Máquina Poggers R${Maq5.Preco}");
-            var Compra  = Console.ReadKey().Key;
-            
-            //Máquina 1
-            if (Compra == ConsoleKey.D1)
-            { 
-                if (Jogador.Dinheiro >= Maq1.Preco)
-                    {
-                        Jogador.ClicksJogador += Maq1.Incremento;
-                        Jogador.Dinheiro -= Maq1.Preco;
-                    }
-                else
-                    Console.WriteLine("Dinheiro Inválido!");
-            }
-            
-            //Máquina 2
-            else if (Compra == ConsoleKey.D2)
-            { 
-                if (Jogador.Dinheiro >= Maq2.Preco)
-                    {
-                        Jogador.ClicksJogador += Maq2.Incremento;
-                        Jogador.Dinheiro -= Maq2.Preco;
-                    }
-                else
-                    Console.WriteLine("Dinheiro Inválido!");
-            }
+            // Mostra a Loja
+            for (int i = 0; i<ListaMaquinas.Count;i++)   
+                Console.WriteLine($"{ListaMaquinas[i].Nome} - Preço: R${ListaMaquinas[i].Preco}");
 
-            //Máquina 3
-            else if (Compra == ConsoleKey.D3)
-            { 
-                if (Jogador.Dinheiro >= Maq3.Preco)
-                    {
-                        Jogador.ClicksJogador += Maq3.Incremento;
-                        Jogador.Dinheiro -= Maq3.Preco;
-                    }
-                else
-                    Console.WriteLine("Dinheiro Inválido!");
-            }
+            // Compra
+            var Compra  = Console.ReadKey();
+            for (int j = 0; j<ListaMaquinas.Count;j++)
+            {
+                if (Compra.ToString() == ListaMaquinas[j].Codigo)
 
-            //Máquina 4
-            else if (Compra == ConsoleKey.D4)
-            { 
-                if (Jogador.Dinheiro >= Maq4.Preco)
+                    if (Jogador.Dinheiro >= ListaMaquinas[j].Preco)
                     {
-                        Jogador.ClicksJogador += Maq4.Incremento;
-                        Jogador.Dinheiro -= Maq4.Preco;
+                        Jogador.ClicksJogador += ListaMaquinas[j].Incremento;
+                        Jogador.Dinheiro -= ListaMaquinas[j].Preco;
                     }
-                else
-                    Console.WriteLine("Dinheiro Inválido!");
-            }
-
-            //Máquina 5
-            else if (Compra == ConsoleKey.D5)
-            { 
-                if (Jogador.Dinheiro >= Maq4.Preco)
+                    else
                     {
-                        Jogador.ClicksJogador += Maq5.Incremento;
-                        Jogador.Dinheiro -= Maq5.Preco;
+                        Thread.Sleep(5);
+                        Console.WriteLine("Dinheiro Inválido");
                     }
-                else
-                    Console.Clear();
-                    Console.WriteLine("Dinheiro Inválido!");
             }
-
+           
         }
 }
