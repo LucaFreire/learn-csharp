@@ -9,5 +9,4 @@ int AlturaUser = int.Parse(Console.ReadLine() ?? "0");
 Quadrado Obj = new Quadrado(BaseUser, AlturaUser);
 
 // Obj.Area();
-Obj.MostarTudo();
-
+// Obj.MostarTudo();
