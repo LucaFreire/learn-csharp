@@ -1,7 +1,5 @@
-﻿using System;
+﻿
 
-Console.WriteLine("Teste");
-var Tecla  = Console.ReadKey().Key;
+Calc.Soma(1,2);
 
-
-Console.WriteLine(Tecla.GetType().ToString() == "0System.ConsoleKey");
+// Calc.Soma(1,2);
