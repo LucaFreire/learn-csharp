@@ -196,4 +196,40 @@ Console.Write($"Nome: {Texto}\nTempo Programando: {Numero} Ano(s)\nSituação: {
 
 ==============================================================================================
 
+Operador Ternário
+
+Sem:
+
+if (Ligado == true)
+{
+	return "Sim";
+}
+else
+{
+	return "Não";
+}
+
+
+Com:
+!!Faz a mesma coisa, porém é mais clean!!
+
+return (Ligado?"Sim":"Não")
+
+==============================================================================================
+
+protected: Pode ser acessada pela classe mãe e filha
+
+private: Pode ser acessada apenas pela Mãe
+
+public: Pode ser acessada por Todos
+
+================================================================================
+
+Ordem de Execução dos construtores: Da Base(Mãe) até a derivada(FilhaN)
+
+
+
+
+
+
 

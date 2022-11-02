@@ -5,7 +5,7 @@
     private string Cor { get; set; } = "Desconhecido";
     private int Idade { get; set;} = 0;
 
-// Constutores
+//  Constutores
     public Animais(string nome, string tipo, string cor, int idade)
     {
         this.Nome = nome;
@@ -26,7 +26,7 @@
             this.Tipo = tipo;
     }
 
-// Métodos
+//  Métodos
     public void MostrarTudo()
     {
         Console.WriteLine($"\nTipo: {this.Tipo}\nNome: {this.Nome}\nCor: {this.Cor}\nIdade: {this.Idade}");
