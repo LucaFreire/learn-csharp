@@ -9,8 +9,8 @@ public class Quadrado
         this.Altura = Altura_par;
     }
     public void Area()
-    {   int area = this.Base * this.Altura;
-        Console.WriteLine($"Área: {area}\n");
+    {
+        Console.WriteLine($"Área: {this.Base * this.Altura}\n");
     }
     public void MostarTudo()
     {

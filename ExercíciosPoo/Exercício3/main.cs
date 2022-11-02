@@ -10,9 +10,9 @@ for (int i = 0; i < 5; i++)
     string NomeUser = Console.ReadLine() ?? "Desconhecido";
 
     Console.WriteLine($"Deseja inserir Dados Opcionais? [S/N]");
-    string escolhaUser = Console.ReadLine() ?? "N";
+    string escolhaUser = Console.ReadLine() ?? "N".ToLower();
 
-    if (escolhaUser == "S")
+    if (escolhaUser == "s")
     {
         Console.WriteLine($"Digite a Cor do Animal: ");
         string corUser = Console.ReadLine() ?? "Desconhecido";
