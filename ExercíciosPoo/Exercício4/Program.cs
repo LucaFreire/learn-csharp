@@ -1,6 +1,6 @@
 ﻿
 List<Jogador> Time1 = new List<Jogador>();
- 
+
 //                             ID  NOME        POSIÇÃO        APELIDO      DATA      NÚMERO   QUALIDADE  CARTAOAMARELO 
 // Jogador user1 = new Jogador(1, "Lucas", "Ponta-Exquerda", "Freire", "08/11/2004",   18,       78,          1);
 
@@ -35,7 +35,7 @@ for (int j = 0; j < 11; j++)
     Console.Write($"Digite o Número do {NomeUser}: ");
     int NumUser = int.Parse(Console.ReadLine() ?? "0");
 
-        Console.Write($"Digite a qualidade do {NomeUser}: ");
+    Console.Write($"Digite a qualidade do {NomeUser}: ");
     double QualidadeUser = int.Parse(Console.ReadLine() ?? "0");
 
     Console.Write($"Digite a Quantidade de Cartões Amarelos o {NomeUser} recebeu: ");
@@ -47,4 +47,3 @@ for (int j = 0; j < 11; j++)
 
 for (int k = 0; k<Time1.Count(); k++)
     Time1[k].MostrarTudo();
-    //Time1[k].Mostrar();
