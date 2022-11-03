@@ -1,6 +1,6 @@
 ﻿public class Animais
 {
-    public string Nome { get; set; }
+    private string Nome { get; set; }
     public string Tipo { get; set; } 
     private string Cor { get; set; } = "Desconhecido";
     private int Idade { get; set;} = 0;

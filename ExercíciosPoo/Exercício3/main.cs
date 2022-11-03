@@ -29,8 +29,20 @@ for (int i = 0; i < 5; i++)
     Console.Clear();
 }
 
-for (int j = 0; j < 5; j++)
-    ListaAnimais[j].MostrarTudo();
+int Dog = 0;
+int Cat = 0;
+int Fish = 0;
 
-// for (int j = 0; j < 5; j++)
-//     ListaAnimais[j].Mostrar();
+for (int j = 0; j < 5; j++)
+{
+    if (ListaAnimais[j].Tipo == "Cachorro")
+        Dog+=1;
+    else if(ListaAnimais[j].Tipo == "Gato")
+        Cat+=1;
+    else
+        Fish+=1;
+        
+    ListaAnimais[j].MostrarTudo();
+    //ListaAnimais[j].Mostrar();
+}
+Console.WriteLine($"\nCachorro(s): {Dog}\nGato(s): {Cat}\nPeixe(s): {Fish}");
