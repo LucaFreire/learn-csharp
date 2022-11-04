@@ -17,13 +17,13 @@
         for (int i =0; i<10; i++)
         {
             Console.WriteLine($"Título do {i+1}° Livro: ");
-            string NomeUser = Console.ReadLine();
+            string NomeUser = Console.ReadLine() ?? "Desconhecido";
 
             Console.WriteLine($"Páginas de {NomeUser}: ");
-            int PaginasUser = int.Parse(Console.ReadLine());
+            int PaginasUser = int.Parse(Console.ReadLine() ?? "0");
 
             Console.WriteLine($"Páginas Lidas: ");
-            int LidasUser = int.Parse(Console.ReadLine());
+            int LidasUser = int.Parse(Console.ReadLine() ?? "0");
 
             Livro livro = new Livro(NomeUser, PaginasUser, LidasUser);
             ListaLivros.Add(livro);
