@@ -97,7 +97,7 @@ var idades = pessoas
 
 
 
-var idadesMedia = pessoas.Sum(p => p.Idade) / pessoas.Count();
+var idadesMedia = pessoas.Sum(p => p.Idade);
 
 int[] Transforme(int[] entrada, Transformador<int> t)
 {
@@ -168,19 +168,16 @@ public static class MyExtensionMethods
         return Maior;
     }
 
-
-
-
-    public static int Average<T>(this IEnumerable<T> coll, Func<T, double> func)
+    public static double Average<T>(this IEnumerable<T> coll, Func<T, double> func)
     {
         var it = coll.GetEnumerator();
-        int Soma = 0;
+        double Soma = 0;
+
         while (it.MoveNext())
-            func(it.Current)
+            Soma += func(it.Current);
 
-
+        return Soma/coll.Count();
     }
-
 
 
     public static IEnumerable<T> Skip<T>(this IEnumerable<T> coll, int N)
