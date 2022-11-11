@@ -26,7 +26,7 @@ var gruposVacinais = vacinados
             };
         
 
-        if (x.Vacina.Contains("ASTRA") || x.Vacina.Contains("OX") || x.Vacina.Contains("FIO" ) )
+        if (x.Vacina.Contains("ASTRA") || x.Vacina.Contains("OX") || x.Vacina.Contains("FIO"))
             return new {
                 vacina = "ATRAZENECA",
                 caso = x
@@ -92,6 +92,8 @@ IEnumerable<CasoCovid> read()
 
     int lab = header.IndexOf("\"LAB_PR_COV\"");
 
+    int idade = header.IndexOf("\"NU_IDADE_N");
+
     while (!reader.EndOfStream)
     {
         var line = reader.ReadLine();
@@ -110,6 +112,14 @@ IEnumerable<CasoCovid> read()
 
         caso.Vacina = data[lab];
 
+        if (int.TryParse(data[idade], out int i))
+        { 
+            if (i < 0)
+                i = -1;
+            caso.Idade = i;
+        }
+        else continue;
+
         yield return caso;
     }
 
@@ -122,6 +132,7 @@ public class CasoCovid
     public bool IsDead { get; set; }
     public int Doses { get; set; }
     public string Vacina { get; set; }
+    public int Idade { get; set; }
 
     public override string ToString()
         => $"{IsCovid} {IsDead} {Doses}";
