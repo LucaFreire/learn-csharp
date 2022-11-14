@@ -1,6 +1,6 @@
 public class Livro
 {
-    private string titulo { get; set; }
+    public string titulo { get; set; }
     private int qtdPaginas { get; set; } 
     private int paginasLidas { get; set; }
 
