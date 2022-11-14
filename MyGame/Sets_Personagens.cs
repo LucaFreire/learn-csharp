@@ -1,8 +1,12 @@
 public abstract class Personagens{
     public string Nome{get;set;}
-    public int Vida{get;set;}
-    public int Dano{get;set;}
-    public int Velocidade{get;set;}
+    protected int Vida{get;set;}
+    protected int Dano{get;set;}
+    protected int Velocidade{get;set;}
+    public void Attck(class Personagens)
+    {
+        this.Vida -= this.Dano;
+    }
 }
 
 public class Tanque : Personagens{

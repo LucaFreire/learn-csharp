@@ -44,6 +44,7 @@ void ChameNVezesExemplo()
     {
         Console.WriteLine("Função Anonima diz:" + s);
     };
+
     ChameNVezes(func, 5);
 
     MeuDelegate func2 = s => Console.WriteLine("Lambda diz:" + s);
@@ -114,12 +115,10 @@ bool condicaoSexMas(Pessoa p) => p.Sexo == "Masculino";
 bool condicaoSexMFem(Pessoa p) => p.Sexo == "Feminino";
  
 
-var sla = pessoas.Where(condicaoSexMFem);
+var sla = pessoas.Max();
 
-foreach (var item in sla)
-{
-    Console.WriteLine(item.Nome);
-}
+Console.Write(sla.Idade);
+
 
 public delegate void MeuDelegate(string x);
 public delegate T Transformador<T>(T n);
@@ -278,8 +277,7 @@ public static class MyExtensionMethods
     public static IEnumerable<string[]> Split(this IEnumerable<string> coll)
     {
         foreach (var el in coll)
-        {
             yield return el.Split(';');
-        }
+        
     }
 }

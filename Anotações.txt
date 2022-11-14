@@ -227,7 +227,11 @@ public: Pode ser acessada por Todos
 
 Ordem de Execução dos construtores: Da Base(Mãe) até a derivada(FilhaN)
 
+================================================================================
 
+A interface é utilizadas para criar métodos(funções), após a criação dos métodos,
+a classe erda da interface todas as funções da interface(é utilizada p/ futuras manutenções,
+pois o código fica mais atualizado dessa maneira)
 
 
 

@@ -1,14 +1,14 @@
 public class Matriz
 {
-    public int Altura{get;set;}
-    public int Largura{get;set;}
+    public int Linhas{get;set;}
+    public int Colunas{get;set;}
     public int[,] Valores {get;set;}
 
 
     public Matriz(int altura, int largura)
     {
-        this.Altura = altura;
-        this.Largura = largura;
+        this.Linhas = altura;
+        this.Colunas = largura;
         this.Valores = new int[altura ,largura];
     }
 
@@ -21,9 +21,9 @@ public class Matriz
     public override string? ToString()
     {
         string matrix = "";
-        for (int i = 0; i < this.Altura; i++)
+        for (int i = 0; i < this.Linhas; i++)
         {
-            for (int j = 0; j < this.Largura; j++)
+            for (int j = 0; j < this.Colunas; j++)
             {
                 matrix+=$"{this.Valores[i,j]} ";
             }
@@ -34,30 +34,31 @@ public class Matriz
 
     public Matriz Transposta()
     {
-        Matriz Aux = new Matriz(this.Largura,this.Altura);
+        Matriz Aux = new Matriz(this.Colunas,this.Linhas);
 
-        for( int i =0; i<Altura; i++)
-            for( int j=0; j<Largura; j++)
+        for( int i =0; i<Linhas; i++)
+            for( int j=0; j<Colunas; j++)
                 Aux.Valores[j,i] = Valores[i,j];
         return Aux;
     }
 
     public Matriz Oposta()
     {
-        Matriz Aux = new Matriz(this.Altura,this.Largura);
+        Matriz Aux = new Matriz(this.Linhas,this.Colunas);
 
-        for( int i =0; i<Altura; i++)
-            for( int j=0; j<Largura; j++)
+        for( int i =0; i<Linhas; i++)
+            for( int j=0; j<Colunas; j++)
                 Aux.Valores[j,i] = Valores[(j*-1),(i*-1)];
 
         return Aux;
     }
+    
     public Matriz Nula()
     {
-        Matriz Aux = new Matriz(this.Altura,this.Largura);
+        Matriz Aux = new Matriz(this.Linhas,this.Colunas);
 
-        for( int i =0; i<Altura; i++)
-            for( int j=0; j<Largura; j++)
+        for( int i =0; i<Linhas; i++)
+            for( int j=0; j<Colunas; j++)
                 Aux.Valores[j,i] = 0;
 
         return Aux;
@@ -65,11 +66,11 @@ public class Matriz
 
     public bool Identidade()
     {
-        if(this.Altura != this.Largura)
+        if(this.Linhas != this.Colunas)
             return false;
-        for ( int i=0; i<this.Altura; i++)
+        for ( int i=0; i<this.Linhas; i++)
         {
-            for(int j=0; j<this.Largura; j++)
+            for(int j=0; j<this.Colunas; j++)
             {
                 if(i==j)
                 {
@@ -86,11 +87,11 @@ public class Matriz
     
     public bool Diagonal()
     {
-        if(this.Altura != this.Largura)
+        if(this.Linhas != this.Colunas)
             return false;
-        for ( int i=0; i<this.Altura; i++)
+        for ( int i=0; i<this.Linhas; i++)
         {
-            for(int j=0; j<this.Largura; j++)
+            for(int j=0; j<this.Colunas; j++)
             {
                 if(i==j)
                     continue;
@@ -101,13 +102,13 @@ public class Matriz
         return true;
     }
 
-    public bool Singular()                                                
+    public bool Singular()
     {
         if(!this.Diagonal())
             return false;
-        for ( int i=0; i<this.Altura; i++)
+        for ( int i=0; i<this.Linhas; i++)
         {
-            for(int j=0; j<this.Largura; j++)
+            for(int j=0; j<this.Colunas; j++)
             {
                 if(i==j)
                 {
@@ -120,11 +121,11 @@ public class Matriz
     }
 
 
-    public bool Simetrica()
+    public bool Simetrica()                                               
     {
-        for ( int i=0; i<this.Altura; i++)
+        for ( int i=0; i<this.Linhas; i++)
         {
-            for(int j=0; j<this.Largura; j++)
+            for(int j=0; j<this.Colunas; j++)
             {
                 if(this.Valores[i,j] != this.Transposta().Valores[i,j])
                     return false;
@@ -133,11 +134,11 @@ public class Matriz
         return true;
     }
 
-    public bool AntiSimetrica()                                                // conferir altura +1
+    public bool AntiSimetrica()                                        
     {
-        for ( int i=0; i<this.Altura; i++)
+        for ( int i=0; i<this.Linhas; i++)
         {
-            for(int j=0; j<this.Largura; j++)
+            for(int j=0; j<this.Colunas; j++)
             {
                 if(this.Oposta().Valores[i,j] != this.Transposta().Valores[i,j])
                     return false;
@@ -164,11 +165,11 @@ public class Matriz
 
     public static Matriz operator + (Matriz primeira, Matriz segunda)
     {
-        if(primeira.Altura != segunda.Altura && primeira.Largura != segunda.Largura)
+        if(primeira.Linhas != segunda.Linhas && primeira.Colunas != segunda.Colunas)
             throw new Exception();
-        for ( int i=0; i<primeira.Altura; i++)
+        for ( int i=0; i<primeira.Linhas; i++)
         {
-            for(int j=0; j<primeira.Largura; j++)
+            for(int j=0; j<primeira.Colunas; j++)
             {
                 primeira.Valores[i,j] += segunda.Valores[i,j];
             }
@@ -179,11 +180,11 @@ public class Matriz
 
     public static Matriz operator - (Matriz primeira, Matriz segunda)
     {
-        if(primeira.Altura != segunda.Altura && primeira.Largura != segunda.Largura)
+        if(primeira.Linhas != segunda.Linhas && primeira.Colunas != segunda.Colunas)
             throw new Exception();
-        for ( int i=0; i<primeira.Altura; i++)
+        for ( int i=0; i<primeira.Linhas; i++)
         {
-            for(int j=0; j<primeira.Largura; j++)
+            for(int j=0; j<primeira.Colunas; j++)
             {
                 primeira.Valores[i,j] -= segunda.Valores[i,j];
             }
@@ -192,19 +193,26 @@ public class Matriz
     }
 
 
-    public static Matriz operator * (Matriz primeira, Matriz segunda)
+    public static Matriz operator * (Matriz mat1, Matriz mat2)
     {
-        if(primeira.Largura != segunda.Altura)
+        if(mat1.Colunas != mat2.Linhas)
             throw new Exception();
-        Matriz Aux = new Matriz(primeira.Largura,primeira.Altura);
-        for ( int i=0; i<primeira.Altura-1; i++)
+        
+        Matriz Result = new Matriz(mat1.Colunas,mat2.Linhas);
+
+        for ( int i=0; i<Result.Linhas; i++)
         {
-            for(int j=0; j<primeira.Largura-1; j++)
+            for(int j=0; j<Result.Colunas; j++)
             {
-                Aux.Valores[i,j] = primeira.Valores[i,j] * segunda.Valores[i,j] + primeira.Valores[i,j+1] * segunda.Valores[i,j+1];
+                int sum=0;
+                for (int k = 0; k < Result.Colunas; k++)
+                {
+                    sum += mat1.Valores[i,k] * mat2.Valores[k,j];
+                }
+                Result.Valores[i,j] = sum;
             }
         }
-        return Aux;
+        return Result;
     }
 
 }
