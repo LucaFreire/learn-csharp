@@ -3,8 +3,7 @@ Estática: alterar o tipo de variável após declara não é possivel
 Dinamica: A linguagem escolhe o tipo de dado de acordo com o valor atribuido
 
 Fraca: Realiza conversões automaticamente entre diferentes tipos de dados
-Forte: Não realizam conversões automaticamente e
-, não permite um mesmo dado ser tratado
+Forte: Não realizam conversões automaticamente e não permite um mesmo dado ser tratado
 como se fosse de outro tipo
 
 Compilar: Gera uma linguagem de maquina que é executada diretamente pelo sistema
@@ -44,13 +43,14 @@ Geração 1: mais utilizados que a 0
 Geração 2: muito utilizados, objetos grandes
 
 ===================================================================================
-using System;
+
 
 !!classe
 Propriedades = Variáveis
 Métodos = Função
 !!
-arquivo.csc
+
+arquivo.cs
 
 ctrl+k+c comenta tudo e ctrl+; descomenta
 dotnet new console //iniciar a usar C#
@@ -100,7 +100,7 @@ bool b1 = true;
 bool b2 = fals
 
 float f = float.PositiveInfinity;
-double d = double.Epsilon; //double: Aceita num maiores e é mais preci
+double d = double.Epsilon; //double: Aceita num maiores e é mais preciso
 
 
 object obj = st
@@ -118,10 +118,6 @@ int? y = null;
 string s1 = null;
 string s2 = s1?.Replace('a','b') ?? "Erro
 Console.WriteLine(s2);
-
-
-
-
 
 ========================================================================
 !!for
@@ -233,7 +229,7 @@ A interface é utilizadas para criar métodos(funções), após a criação dos 
 a classe erda da interface todas as funções da interface(é utilizada p/ futuras manutenções,
 pois o código fica mais atualizado dessa maneira)
 
-
+==============================================================================================
 
 
 

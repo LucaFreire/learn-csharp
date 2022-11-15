@@ -4,7 +4,7 @@ public abstract class Personagens
     protected int Vida{ get; set; }
     protected int Dano{ get; set; }
     protected int Velocidade{ get; set; }
-    public void Attck(Personagens inimigo) => inimigo.Vida -= this.Dano;
+    public void Attack(Personagens inimigo) => inimigo.Vida -= this.Dano;
   
     public class Tanque : Personagens
     {

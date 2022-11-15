@@ -134,6 +134,5 @@ public class CasoCovid
     public string Vacina { get; set; }
     public int Idade { get; set; }
 
-    public override string ToString()
-        => $"{IsCovid} {IsDead} {Doses}";
+    public override string ToString() => $"{IsCovid} {IsDead} {Doses}";
 }
