@@ -17,7 +17,6 @@ public class Matriz
         this.Valores[altura,largura] = valor;
     }
 
-    
     public override string? ToString()
     {
         string matrix = "";
@@ -52,7 +51,7 @@ public class Matriz
 
         return Aux;
     }
-    
+
     public Matriz Nula()
     {
         Matriz Aux = new Matriz(this.Linhas,this.Colunas);
@@ -84,7 +83,6 @@ public class Matriz
         return true;
     }
 
-    
     public bool Diagonal()
     {
         if(this.Linhas != this.Colunas)
@@ -120,7 +118,6 @@ public class Matriz
         return true;
     }
 
-
     public bool Simetrica()                                               
     {
         for ( int i=0; i<this.Linhas; i++)
@@ -147,7 +144,6 @@ public class Matriz
         return true;
     }
 
-
     // public Matriz Soma(Matriz primeira, Matriz segunda)
     // {
     //     if(primeira.Altura != segunda.Altura && primeira.Largura != segunda.Largura)
@@ -161,7 +157,6 @@ public class Matriz
     //     }
     //     return primeira;
     // }
-
 
     public static Matriz operator + (Matriz primeira, Matriz segunda)
     {
@@ -177,7 +172,6 @@ public class Matriz
         return primeira;
     }
 
-
     public static Matriz operator - (Matriz primeira, Matriz segunda)
     {
         if(primeira.Linhas != segunda.Linhas && primeira.Colunas != segunda.Colunas)
@@ -191,7 +185,6 @@ public class Matriz
         }
         return primeira;
     }
-
 
     public static Matriz operator * (Matriz mat1, Matriz mat2)
     {

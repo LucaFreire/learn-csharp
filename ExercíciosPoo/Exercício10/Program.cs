@@ -1,6 +1,5 @@
-﻿int h = 3;
-int l = 3;
-Matriz mat = new Matriz(h,l);
+﻿
+Matriz mat = new Matriz(3,3);
 
 mat.Add(0,0,25);
 mat.Add(0,1,0);
@@ -16,7 +15,7 @@ mat.Add(2,2,45);
 
 
 
-Matriz mat2 = new Matriz(h,l);
+Matriz mat2 = new Matriz(3,3);
 
 mat2.Add(0,0,25);
 mat2.Add(0,1,0);
@@ -35,6 +34,6 @@ mat2.Add(2,2,45);
 // Console.WriteLine(mat.Diagonal());
 // Console.WriteLine(mat.Singular());
 // Console.WriteLine(mat.Simetrica());
-Console.WriteLine(mat.Simetrica());
+// Console.WriteLine(mat.Simetrica());
 
-Console.WriteLine(mat + mat2);
+Console.WriteLine(mat * mat2);
