@@ -1,0 +1,15 @@
+C:\Users\Aluno\Desktop\ex\EX2\bin\Debug\net6.0\EX2.exe
+C:\Users\Aluno\Desktop\ex\EX2\bin\Debug\net6.0\EX2.deps.json
+C:\Users\Aluno\Desktop\ex\EX2\bin\Debug\net6.0\EX2.runtimeconfig.json
+C:\Users\Aluno\Desktop\ex\EX2\bin\Debug\net6.0\EX2.dll
+C:\Users\Aluno\Desktop\ex\EX2\bin\Debug\net6.0\ref\EX2.dll
+C:\Users\Aluno\Desktop\ex\EX2\bin\Debug\net6.0\EX2.pdb
+C:\Users\Aluno\Desktop\ex\EX2\obj\Debug\net6.0\EX2.csproj.AssemblyReference.cache
+C:\Users\Aluno\Desktop\ex\EX2\obj\Debug\net6.0\EX2.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Aluno\Desktop\ex\EX2\obj\Debug\net6.0\EX2.AssemblyInfoInputs.cache
+C:\Users\Aluno\Desktop\ex\EX2\obj\Debug\net6.0\EX2.AssemblyInfo.cs
+C:\Users\Aluno\Desktop\ex\EX2\obj\Debug\net6.0\EX2.csproj.CoreCompileInputs.cache
+C:\Users\Aluno\Desktop\ex\EX2\obj\Debug\net6.0\EX2.dll
+C:\Users\Aluno\Desktop\ex\EX2\obj\Debug\net6.0\ref\EX2.dll
+C:\Users\Aluno\Desktop\ex\EX2\obj\Debug\net6.0\EX2.pdb
+C:\Users\Aluno\Desktop\ex\EX2\obj\Debug\net6.0\EX2.genruntimeconfig.cache
