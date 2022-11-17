@@ -100,7 +100,60 @@ void AnoPreco(int ano, float price) // Escolhe o <ano> do jogo e seleciona jogos
         Console.WriteLine(line.Nome + " - " + line.Preco);
 }
 
+
+void PioresAnos() // Os Piores Anos p/ Nota dos jogos
+{
+    var df = read()
+            .Where(jogo => jogo.Ano != 0)
+            .GroupBy(jogo => jogo.Ano)
+            .Select(grupo => new {
+                Ano = grupo.Key,
+                MediaNota = grupo.Average(jogo => jogo.Nota)
+            })
+            .OrderByDescending(grupo => grupo.MediaNota)
+            .Take(3);
+            
+    Console.WriteLine("Top 3 piores anos");
+    int count = 1;
+    foreach (var item in df)
+    {
+        Console.WriteLine($"{count}° {item.Ano}");
+        count++;
+    }
+}
+
+
+void GeneroCaro() // Genero mais caro por console
+{
+    var df = read()
+            .Where(j => !float.TryParse(j.Console, out float _) && j.Console != "True")
+            .GroupBy(c => c.Console)
+            .Select(c => new {
+                Nome = c.Key,
+                Gener = c.MaxBy(t => t.Preco).Genero
+            });
+}
+
+
+
+void GeneroNota() // Top 5 generos p/ nota
+{
+    var df = read()
+            .GroupBy(g => g.Genero)
+            .Select( n => new{ 
+            NomeGener = n.Key,
+            Nota = n.Average( j=> j.Nota)
+            })
+            .OrderByDescending(n => n.Nota)
+            .Take(5);
+
+    foreach (var item in df)
+        Console.WriteLine($"Genero: {item.NomeGener} -- Nota: {Math.Round(item.Nota, 2)}");
+}
+
+
 // ===================== CHAMAR FUNÇÕES ========================
+
 
 // Anos(1990); // Todos os jogos que foram lançados após os anos 1990
 
@@ -116,6 +169,13 @@ void AnoPreco(int ano, float price) // Escolhe o <ano> do jogo e seleciona jogos
 // PorEmpresa("Pray"); // Empresa não encontrada
 
 // Preco();
+
+// PioresAnos();
+
+// GeneroCaro();
+
+// GeneroNota();
+
 
 // =========================== MANIPULAÇÃO DO ARQUIVO ===========================
 
