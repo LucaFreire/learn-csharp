@@ -80,6 +80,7 @@ void PorEmpresa(string NomeEmpresa) // Mostra todos os jogos da <NomeEmpresa>
         Console.WriteLine("Empresa não encontrada!");
 }
 
+
 void Preco()
 {
     var df = read()
@@ -87,17 +88,16 @@ void Preco()
         
     foreach (var item in df)
         Console.WriteLine($"Jogo: {item.Nome} -- US$ {item.Preco}");
-
 }
 
-void AnoPreco(int ano, float price)
+
+void AnoPreco(int ano, float price) // Escolhe o <ano> do jogo e seleciona jogos com valor acima do <price> 
 {
     var df = read();
-    var test = df.Where(j => j.Ano > ano && (double.Parse(j.Preco)/100 > 25));
+    var test = df.Where(j => j.Ano == ano && (double.Parse(j.Preco)/100 < price));
 
     foreach(var line in test)
         Console.WriteLine(line.Nome + " - " + line.Preco);
-                
 }
 
 // ===================== CHAMAR FUNÇÕES ========================
