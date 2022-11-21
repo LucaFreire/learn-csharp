@@ -13,7 +13,7 @@ public static class Extension
         return soma;
     }
 
-    public static double harmônica(this IEnumerable<double> coll)
+    public static double Harmonica(this IEnumerable<double> coll)
     {
         var it = coll.GetEnumerator();
         double soma = 0; 
