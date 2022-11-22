@@ -6,7 +6,7 @@ int _count = 0;
 Universidade uni = new Universidade();
 
 Pesquisa("As disciplinas com mais de 10 caractéres no nome.");
-// Pesquisador.Pesquisa1(uni);
+Pesquisador.Pesquisa1(uni);
 WriteLine();
 
 Pesquisa("Os departamentos, em ordem alfabética, com o número de disciplinas.");
@@ -40,11 +40,10 @@ public class Pesquisador
     /// </summary>
     public static void Pesquisa1(Universidade uni)
     {
-        var df = uni.Disciplinas;
+        var df = uni.Disciplinas.Where(j => j.Nome.Length > 10);
         
         foreach (var item in df)
-            if (item.Nome.Length > 10)
-                Console.WriteLine(df);    
+            Console.WriteLine(item.Nome);    
     }
 
     /// <summary>
@@ -73,7 +72,6 @@ public class Pesquisador
     public static void Pesquisa3(Universidade uni)
     {
         var AlunoDf = uni.Alunos;
-
         var ProfDf = uni.Professores;
 
         foreach (var aluno in AlunoDf)
@@ -94,7 +92,6 @@ public class Pesquisador
     public static void Pesquisa4(Universidade uni)
     {
         var AlunoDf = uni.Alunos;
-
         var ProfDf = uni.Professores;
 
         int CountAluno = 0;
@@ -105,7 +102,6 @@ public class Pesquisador
             foreach (var aluno in AlunoDf)
             {
                 int len = aluno.TurmasMatriculados.Count;
-
 
                 for (int i = 0; i < len; i++)
                     if (prof.DepartamentoID == aluno.TurmasMatriculados[i])
@@ -158,9 +154,20 @@ public class Pesquisador
     /// Considerando que todo aluno custa 300 reais mais o salário dos seus professores
     /// divido entre seus colegas de classe. Liste os alunos e seus respectivos custos
     /// </summary>
+    public class Alunos
+    {
+        public string nome { get; set; }
+        public double price { get; set; }
+    }
     public static void Pesquisa6(Universidade uni)
     {
-        WriteLine("Não implementado!");
+        var dfAluno = uni.Alunos;
+        var dfProf = uni.Professor;
+
+
+
+
+
     }
 }
 
