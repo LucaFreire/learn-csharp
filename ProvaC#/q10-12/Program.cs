@@ -40,10 +40,7 @@ public class Pesquisador
     /// </summary>
     public static void Pesquisa1(Universidade uni)
     {
-        var df = uni.Disciplinas.Where(j => j.Nome.Length > 10);
-        
-        foreach (var item in df)
-            Console.WriteLine(df);    
+        WriteLine("Não implementado!");
     }
 
     /// <summary>
@@ -51,19 +48,7 @@ public class Pesquisador
     /// </summary>
     public static void Pesquisa2(Universidade uni)
     {
-        var df = uni.Departamentos.OrderBy(j => j.Nome);
-        var df2 = uni.Disciplinas;
-        int mat = 0;
-
-        foreach (var item in df)
-        {
-           foreach (var item2 in df2)
-                if (item2.DepartamentoID == item.ID)
-                    mat+=1;
-           
-           Console.WriteLine($"Departamento: {item.Nome} -- Disciplinas: {mat}");
-           mat = 0;
-        }
+        WriteLine("Não implementado!");
     }
 
     /// <summary>
@@ -71,19 +56,7 @@ public class Pesquisador
     /// </summary>
     public static void Pesquisa3(Universidade uni)
     {
-        var AlunoDf = uni.Alunos;
-        var ProfDf = uni.Professores;
-
-        foreach (var aluno in AlunoDf)
-        {
-            int len = aluno.TurmasMatriculados.Count;
-            Console.WriteLine($"\nAluno: {aluno.Nome}");
-
-            foreach (var prof in ProfDf)
-                for (int i = 0; i < len; i++)   
-                    if (prof.DepartamentoID == aluno.TurmasMatriculados[i])
-                        Console.WriteLine($"Professor: {prof.Nome}");        
-        }
+        WriteLine("Não implementado!");
     }
 
     /// <summary>
@@ -91,24 +64,7 @@ public class Pesquisador
     /// </summary>
     public static void Pesquisa4(Universidade uni)
     {
-        var AlunoDf = uni.Alunos;
-        var ProfDf = uni.Professores;
-
-        int CountAluno = 0;
-
-        foreach (var prof in ProfDf)
-        {
-            CountAluno = 0;
-            foreach (var aluno in AlunoDf)
-            {
-                int len = aluno.TurmasMatriculados.Count;
-
-                for (int i = 0; i < len; i++)
-                    if (prof.DepartamentoID == aluno.TurmasMatriculados[i])
-                        CountAluno+=1;
-            }
-            Console.WriteLine($"Professor: {prof.Nome} R$ {prof.Salario} -- Alunos: {CountAluno} ");
-        }
+        WriteLine("Não implementado!");
     }
 
     /// <summary>
@@ -116,29 +72,7 @@ public class Pesquisador
     /// </summary>
     public static void Pesquisa5(Universidade uni)
     {
-        List<Professor> lista = new List<Professor>();
-        var AlunoDf = uni.Alunos;
-        var ProfDf = uni.Professores;
-
-        foreach (var prof in ProfDf)
-        {
-            foreach (var aluno in AlunoDf)
-            {
-                int len = aluno.TurmasMatriculados.Count;
-                for (int i = 0; i < len; i++)
-                    if (prof.DepartamentoID == aluno.TurmasMatriculados[i])
-                        prof.QtdAlunos+=1;
-            }
-            lista.Add(prof);
-        }
-
-        var x = lista.OrderByDescending(j => j.QtdAlunos);
-        int Count = 0;
-        foreach (var item in x)
-        {
-            Count+=1;
-            Console.WriteLine($"{Count}° Professor: {item.Nome} -- Alunos: {item.QtdAlunos}");
-        }
+        WriteLine("Não implementado!");
     }
 
     /// <summary>
@@ -147,23 +81,9 @@ public class Pesquisador
     /// </summary>
     public static void Pesquisa6(Universidade uni)
     {
-        // var AlunoDf = uni.Alunos;
-        // var ProfDf = uni.Professores;
-
-        // foreach (var aluno in AlunoDf)
-        // {
-        //     int len = aluno.TurmasMatriculados.Count;
-        //     Console.WriteLine($"\nAluno: {aluno.Nome}");
-
-        //     foreach (var prof in ProfDf)
-        //         for (int i = 0; i < len; i++)   
-        //             if (prof.DepartamentoID == aluno.TurmasMatriculados[i])
-        //                 aluno.Valor+=prof.Salario;       
-        //                     Console.WriteLine($"Preço: {aluno.Valor + 300)}");
-        // }
+        WriteLine("Não implementado!");
     }
 }
-
 
 public class Elemento
 {
@@ -180,7 +100,6 @@ public class Professor : Pessoa
 {
     public int DepartamentoID { get; set; }
     public decimal Salario { get; set; }
-    public int QtdAlunos { get; set; }
 }
 
 public class Departamento : Elemento
@@ -204,7 +123,6 @@ public class Turma : Elemento
 public class Aluno : Pessoa
 {
     public List<int> TurmasMatriculados { get; set; } = new List<int>();
-    public decimal Valor { get; set; }
 }
 
 public class Universidade
