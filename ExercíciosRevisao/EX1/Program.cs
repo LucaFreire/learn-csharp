@@ -1,4 +1,8 @@
-﻿List<String> lista = new List<string>();
+﻿// 1.Crie um programa que recebe listas de caracteres e retorna essa 
+// mesma lista de forma ordenada até que o usuário deseje parar,
+// e depois imprime no console todas as listas. 
+
+List<String> lista = new List<string>();
 
 
 while (true)
