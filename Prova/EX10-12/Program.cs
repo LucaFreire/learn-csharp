@@ -43,7 +43,11 @@ public class Pesquisador
         var df = uni.Disciplinas.Where(j => j.Nome.Length > 10);
         
         foreach (var item in df)
+<<<<<<< HEAD
             Console.WriteLine(df);    
+=======
+            Console.WriteLine(item.Nome);    
+>>>>>>> 90d43b34889f0735c156906396e05f13f2667580
     }
 
     /// <summary>
@@ -145,8 +149,14 @@ public class Pesquisador
     /// Considerando que todo aluno custa 300 reais mais o salário dos seus professores
     /// divido entre seus colegas de classe. Liste os alunos e seus respectivos custos
     /// </summary>
+    public class Alunos
+    {
+        public string nome { get; set; }
+        public double price { get; set; }
+    }
     public static void Pesquisa6(Universidade uni)
     {
+<<<<<<< HEAD
         // var AlunoDf = uni.Alunos;
         // var ProfDf = uni.Professores;
 
@@ -161,6 +171,15 @@ public class Pesquisador
         //                 aluno.Valor+=prof.Salario;       
         //                     Console.WriteLine($"Preço: {aluno.Valor + 300)}");
         // }
+=======
+        var dfAluno = uni.Alunos;
+        var dfProf = uni.Professor;
+
+
+
+
+
+>>>>>>> 90d43b34889f0735c156906396e05f13f2667580
     }
 }
 
