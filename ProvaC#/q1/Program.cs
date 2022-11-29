@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 double[] array = new double[]
 {
@@ -8,5 +9,11 @@ Console.WriteLine(mediaEspecial(array));
 
 double mediaEspecial(double[] array)
 {
-    return float.NaN;
+    array = array.OrderBy(i => i).ToArray();
+    int meio = array.Length / 2;
+    return (
+        array[meio - 1] + 
+        array[meio] + 
+        array[meio + 1]
+        ) / 3;
 }

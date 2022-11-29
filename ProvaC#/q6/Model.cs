@@ -38,3 +38,40 @@ public class TwoRock : Enemy
         Column++; //Cai em diagonal
     }
 }
+
+public class Teleporte : Enemy
+{
+    int count = 0;
+    public override void Build()
+    {
+        Column = random(1000);
+        Line = random(1000);
+        build(0, 0, 40, 40);
+    }
+
+    public override void Move()
+    {
+        count++;
+        if (count % 40 != 0)
+            return;
+        Line = random(1000);
+        Column = random(1000);
+    }
+}
+public class Parede : Enemy
+{
+    int count = 0;
+    public override void Build()
+    {
+        Column = random(1000);
+        Line = 0;
+        int r = random(1000);
+        build(r - 700, 0, 1200, 40);
+        build(r + 700, 0, 1200, 40);
+    }
+
+    public override void Move()
+    {
+        Line++;
+    }
+}

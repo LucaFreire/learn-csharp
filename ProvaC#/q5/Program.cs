@@ -1,9 +1,15 @@
 ﻿using System;
 using System.IO;
+using System.Collections.Generic;
 
 string nome = string.Empty;
 bool premiun = false;
 int dia = -1;
+int mes = -1;
+int ano = -1;
+bool run = true;
+var listaToFind = new List<Produto>();
+
 // TODO
 
 //Vou completar esta bela obra semana que vem,
@@ -22,9 +28,9 @@ Console.WriteLine("");
 Console.WriteLine("Pressione qualquer tecla para começar...");
 Console.ReadKey(true);
 
-while (true)
+while (run)
 {
-    Console.Clear();
+
     Console.WriteLine("O que você quer fazer?");
     Console.WriteLine("1 - Cadastrar Novo cliente");
     Console.WriteLine("2 - Ler dados do cliente");
@@ -35,16 +41,92 @@ while (true)
     switch(id)
     {
         case 1:
-            Console.Write("Digite o nome do Cliente:");
-            nome = Console.ReadLine();
+            Console.Clear();
+            Console.Write("Digite o nome do Cliente: ");
+            nome = Console.ReadLine() ?? "Desconhecido";
 
-            // TODO
+            Console.Write($"\nO {nome} já obteve um 'premiun'? ");
+            string x = Console.ReadLine().ToLower();
 
-            Cliente cliente = new Cliente(nome, premiun, dia, -1, -1);
+            if (x == "sim" || x == "true" )
+                premiun = true;
+
+            else premiun = false;
+
+            Console.Write($"\nDia: ");
+            dia = int.Parse(Console.ReadLine() ?? "-1");
+
+            Console.Write($"\nMês: ");
+            mes = int.Parse(Console.ReadLine() ?? "-1");
+
+            Console.Write($"\nAno: ");
+            ano = int.Parse(Console.ReadLine() ?? "-1");
+
+            Console.WriteLine("Cliente Cadastrado!");
+
+            Cliente cliente = new Cliente(nome, premiun, dia, mes, ano);
             cliente.Save();
             break;
         
         // TODO
+
+        case 2:
+            Console.Clear();
+            Console.Write("Digite o nome do Cliente: ");
+            string NomeUser = Console.ReadLine();
+
+            var dados = Cliente.Load(NomeUser);
+            Console.WriteLine($"Nome: {dados.Nome}\nPremiun: {dados.Premium}\nData de Nascimento: {dados.DiaNascimento}/{dados.MesNascimento}/{dados.AnoNascimento}\n");
+            break;
+        
+
+        case 3:
+            Console.Clear();
+            Console.WriteLine("Cadastro de Produtos");
+            
+            Console.WriteLine("\nNome do Produto: ");
+            string ProdutoUser = Console.ReadLine();
+
+            Console.WriteLine($"Nacionalidade do {ProdutoUser}: ");
+            string NacioUser = Console.ReadLine();
+
+            Console.WriteLine($"Preço do {ProdutoUser}: ");
+            double PrecoUser = double.Parse(Console.ReadLine() ?? "0");
+
+            Console.WriteLine("Produto Cadastrado!");
+            Produto prod = new Produto(ProdutoUser, NacioUser, PrecoUser);
+            listaToFind.Add(prod);
+            prod.Save();
+            break;
+        
+        case 4:
+            Console.Clear();
+            Console.WriteLine("Visualizar Produto");
+
+            Console.Write("Digite o Nome do Produto: ");
+            string maq = Console.ReadLine();
+
+            bool exis = false;
+
+            foreach (var item in listaToFind)
+                if (item.NomePro.ToLower() == maq.ToLower())
+                {
+                    Console.WriteLine($"Nome do Produto: {item.NomePro}\nNacionalidade: {item.Nacionalidade}\nPreço: {item.Preco}\n");
+                    exis = true;
+                }
+        
+            if (!exis)
+                Console.WriteLine("Produto Não Encontrado!");
+            break;
+
+        case 5:
+            Console.WriteLine("Você Saiu!");
+            run = false;
+            break;
+        
+        default:
+            Console.WriteLine("Opção Inválida, Digite Novamente!");
+            break;
     }
 }
 
@@ -83,16 +165,56 @@ public class Cliente
         StreamReader reader = new StreamReader(nome + ".txt");
 
         nome = reader.ReadLine();
+
         bool premiun = bool.Parse(reader.ReadLine());
 
+        int dia = int.Parse(reader.ReadLine());
+
+        int mes = int.Parse(reader.ReadLine());
+
+        int ano = int.Parse(reader.ReadLine());
         // TODO
         
-        Cliente cliente = new Cliente(nome, premiun, -1, -1, -1);
+        Cliente cliente = new Cliente(nome, premiun, dia, mes, ano);
         return cliente;
     }
 }
 
 public class Produto
 {
-    // TODO
+    public string NomePro { get; set; }
+    public string Nacionalidade { get; set; }
+    public double Preco { get; set; }
+    
+    public Produto(string name, string place, double value)
+    {
+        this.NomePro = name;
+        this.Nacionalidade = place;
+        this.Preco = value;
+    }
+    
+    public void Save()
+    {
+        StreamWriter writer = new StreamWriter(this.NomePro + ".txt");
+
+        writer.WriteLine(this.NomePro);
+        writer.WriteLine(this.Nacionalidade);
+        writer.WriteLine(this.Preco);
+
+        writer.Close();
+    }
+    public static Produto Load(string nome)
+    {
+        StreamReader reader = new StreamReader(nome + ".txt");
+
+        nome = reader.ReadLine();
+
+        string place = reader.ReadLine();
+
+        double value = int.Parse(reader.ReadLine());
+
+        Produto produto = new Produto(nome, place, value);
+        return produto;
+    }
+
 }

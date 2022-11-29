@@ -40,7 +40,15 @@ public class Pesquisador
     /// </summary>
     public static void Pesquisa1(Universidade uni)
     {
-        WriteLine("Não implementado!");
+        var result = 
+            from x in uni.Disciplinas
+            where x.Nome.Length > 10
+            select x;
+
+        foreach (var d in result)
+        {
+            WriteLine(d.Nome);
+        }
     }
 
     /// <summary>
@@ -48,7 +56,40 @@ public class Pesquisador
     /// </summary>
     public static void Pesquisa2(Universidade uni)
     {
-        WriteLine("Não implementado!");
+        var query = 
+            from dep in uni.Departamentos
+            join dis in uni.Disciplinas
+            on dep.ID equals dis.DepartamentoID
+            select new { 
+                Departamento = dep.Nome,
+                Disciplina = dis.Nome
+            } into dd
+            group dd by dd.Departamento into g
+            orderby g.Key
+            select new { 
+                Departamento = g.Key, 
+                Count = g.Count() 
+            };
+        
+        var query2 = uni.Departamentos
+            .Join(uni.Disciplinas, 
+                dep => dep.ID, 
+                dis => dis.DepartamentoID,
+                (dep, dis) => new { 
+                    Departamento = dep.Nome,
+                    Disciplina = dis.Nome
+                })
+            .GroupBy(dd => dd.Departamento)
+            .OrderBy(g => g.Key)
+            .Select(g => new {
+                Departamento = g.Key, 
+                Count = g.Count() 
+            });
+
+        foreach (var x in query)
+        {
+            WriteLine($"{x.Departamento} - {x.Count}");
+        }
     }
 
     /// <summary>
@@ -56,7 +97,43 @@ public class Pesquisador
     /// </summary>
     public static void Pesquisa3(Universidade uni)
     {
-        WriteLine("Não implementado!");
+        var query = 
+            uni.Alunos.SelectMany(a => 
+                a.TurmasMatriculados
+                    .Select(m => new {
+                        Aluno = a.Nome,
+                        TurmaId = m
+                    })
+                )
+            .Join(uni.Turmas,
+                at => at.TurmaId,
+                t => t.ID,
+                (at, t) => new {
+                    Aluno = at.Aluno,
+                    ProfessorId = t.ProfessorID
+                })
+            .Join(uni.Professores,
+                ap => ap.ProfessorId,
+                p => p.ID,
+                (ap, p) => new {
+                    Aluno = ap.Aluno,
+                    Professor = p.Nome
+                })
+            .GroupBy(x => x.Aluno)
+            .Select(g => new {
+                Aluno = g.Key,
+                Professores = g.Select(x => x.Professor)
+                    .Distinct()
+            });
+
+        foreach (var x in query)
+        {
+            Write(x.Aluno + ": ");
+            foreach (var y in x.Professores)
+                Write(y + ", ");
+            WriteLine();
+        }
+
     }
 
     /// <summary>

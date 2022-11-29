@@ -5,13 +5,35 @@ App.Run();
 
 public class Pesquisador
 {
+   
     public IEnumerable<Colaborador> Search(
         IEnumerable<Colaborador> collab,
         string parametro)
     {
-        return collab;
+        if (parametro.Length == 0)
+            return collab;
+        
+        var parameters = parametro.Split(" ");
+        var yesParams = parameters
+            .Where(p => p.Length > 0 && p[0] != '-');
+        var noParams = parameters
+            .Where(p => p.Length > 0 && p[0] == '-')
+            .Select(p => p.Remove(0, 1));
+        
+        return collab
+            .Where(c => yesParams.Count() == 0 ||
+                yesParams.Any(p => c.Nome.Contains(p)) ||
+                yesParams.Any(p => c.Cargo.Contains(p)) ||
+                yesParams.Any(p => c.Edv.Contains(p)) ||
+                yesParams.Any(p => c.Setor.Contains(p)))
+            .Where(c => 
+                !(noParams.Any(p => c.Nome.Contains(p)) ||
+                noParams.Any(p => c.Cargo.Contains(p)) ||
+                noParams.Any(p => c.Edv.Contains(p)) ||
+                noParams.Any(p => c.Setor.Contains(p))));
     }
 }
+    
 
 public class Colaborador
 {
