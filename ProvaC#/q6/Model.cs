@@ -1,7 +1,10 @@
+using System;
 public abstract class Enemy : Entity
 {
     public int Column { get; set; }
     public int Line { get; set; }
+    public int ColumnRand { get; set; }
+    public int LineRand { get; set; }
 
     public abstract void Move();
     public abstract void Build();
@@ -39,7 +42,65 @@ public class TwoRock : Enemy
     }
 }
 
-public class Teleporte : Enemy
+public class Inimigo1 : Enemy
+{
+    public override void Build()
+    {
+        Column = 500;
+        Line = 500;
+        build(0, 0, 40, 40); // Corpo deslocado do centro
+    }
+
+    public override void Move()
+    {
+        Line += 0; 
+        Column += 0; 
+    }
+}
+public class Inimigo2 : Enemy
+{
+    public override void Build()
+    {   
+        Random randNum = new Random();
+
+        Column = random(1000);
+        Line = random(700);
+        build(0, 0, 10, 100); // Corpo deslocado do centro
+    }
+    public override void Move() => Line += 5; 
+}
+public class Inimigo3 : Enemy
+{
+    int count = 0;
+    public override void Build()
+    {
+        Column = random(1000);
+        Line = 0;
+        int r = random(1000);
+        build(r - 700, 0, 1200, 40);
+        build(r + 700, 0, 1200, 40);
+    }
+    public override void Move() => Line++;
+}
+
+public class Inimigo4 : Enemy
+{
+    public override void Build()
+    {
+        Column = random(1000);
+        Line = random(1000);
+        ColumnRand = random(10);
+        LineRand = random(10);
+        build(0, 0, 40, 40);
+    }
+
+    public override void Move()
+    {
+        Line += ColumnRand;
+        Column += LineRand;
+    }
+}
+public class Inimigo5 : Enemy
 {
     int count = 0;
     public override void Build()
@@ -58,20 +119,40 @@ public class Teleporte : Enemy
         Column = random(1000);
     }
 }
-public class Parede : Enemy
+
+public class Inimigo6 : Enemy
 {
-    int count = 0;
     public override void Build()
     {
-        Column = random(1000);
-        Line = 0;
-        int r = random(1000);
-        build(r - 700, 0, 1200, 40);
-        build(r + 700, 0, 1200, 40);
-    }
+        Random rand = new Random();
 
+        Column = 0;
+        Line = random(1000);
+        ColumnRand = random(1000);
+        LineRand = rand.Next(5,15);
+        build(0, 0, 40, 40);
+    }
+    public override void Move() => Column += LineRand;
+}
+
+public class InimigoPoggers : Enemy // Se moviementa em diagonal (mais random do que o do trevisas)
+{
+    public override void Build()
+    {
+        Random rand = new Random();
+
+        Column = random(1000);
+        Line = Column;
+        ColumnRand = random(1000);
+        LineRand = rand.Next(5,15);
+        build(0, 0, 40, 40);
+    }
     public override void Move()
     {
-        Line++;
+        Line += LineRand;
+        if (ColumnRand > 500)
+            Column += LineRand;
+        else
+            Column -= LineRand;
     }
 }
