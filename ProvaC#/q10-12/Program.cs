@@ -141,15 +141,50 @@ public class Pesquisador
     /// </summary>
     public static void Pesquisa4(Universidade uni)
     {
-        WriteLine("Não implementado!");
-    }
+        var tur = uni.Turmas.Select(t => new { t.ProfessorID, QtdAlunos = uni.Alunos.Where(a => a.TurmasMatriculados.Contains(t.ID)).Count() });
+                    
 
+        var nome = uni.Professores.Join(tur,
+                                        pr => pr.ID,
+                                        te => te.ProfessorID,
+                                        (pr,te) => new {
+                                            NomeProf = pr.Nome,
+                                            qtd = te.QtdAlunos
+                                        }).GroupBy(sla => sla.NomeProf)
+                                        .Select(g => new{
+                                                Nomeprof = g.Key,
+                                                Qtd = g.Sum(item => item.qtd)
+                                        });
+
+        foreach (var item in nome)
+        {
+            WriteLine(($"{item.Nomeprof, -20} {item.Qtd, 2}"));
+        }
+    }
     /// <summary>
     /// Top 10 Professores com mais alunos da universidade
     /// </summary>
     public static void Pesquisa5(Universidade uni)
     {
-        WriteLine("Não implementado!");
+        var tur = uni.Turmas.Select(t => new { t.ProfessorID, QtdAlunos = uni.Alunos.Where(a => a.TurmasMatriculados.Contains(t.ID)).Count() });
+                    
+
+        var nome = uni.Professores.Join(tur,
+                                        pr => pr.ID,
+                                        te => te.ProfessorID,
+                                        (pr,te) => new {
+                                            NomeProf = pr.Nome,
+                                            qtd = te.QtdAlunos
+                                        }).GroupBy(sla => sla.NomeProf)
+                                        .Select(g => new{
+                                                Nomeprof = g.Key,
+                                                Qtd = g.Sum(item => item.qtd)
+                                        }).OrderByDescending( t => t.Qtd);
+
+         foreach (var item in nome)
+        {
+            WriteLine(($"{item.Nomeprof, -20} {item.Qtd, 2}"));
+        }                               
     }
 
     /// <summary>
