@@ -38,12 +38,7 @@ var Exer3Season = bikes.Join(days,
                 .Select( x => new {
                     Season = x.Key,
                     media = x.Average( gg => gg.Cas + gg.Reg)
-                }
-                );
-
-Console.WriteLine($"By Season\n");
-foreach (var item in Exer3Season)
-    Console.WriteLine($"Season: {item.Season} -- Mean: {item.media}");
+                });
 
 var Exer3Temp = bikes.Join(days,
                 bike => bike.Day,
@@ -57,6 +52,27 @@ var Exer3Temp = bikes.Join(days,
                     Temp = x.Key,
                     media = x.Average( gg => gg.Cas + gg.Reg)
                 });
+
+var Exer3Weather = bikes.Join(days,
+                bike => bike.Day,
+                dia => dia.Day,
+                (bike,dia) => new{
+                    Weather = dia.Weather,
+                    Cas = bike.Casual,
+                    Reg = bike.Registred
+                }).GroupBy(xx => xx.Weather )
+                .Select( x => new {
+                    Weather = x.Key,
+                    media = x.Average( gg => gg.Cas + gg.Reg)
+                });
+
+Console.WriteLine($"By Season\n");
+foreach (var item in Exer3Season)
+    Console.WriteLine($"Season: {item.Season} -- Mean: {item.media}");
+
+Console.WriteLine($"By Weather\n");
+foreach (var item in Exer3Weather)
+    Console.WriteLine($"Temp: {item.Weather} -- Mean: {item.media}");
 
 Console.WriteLine($"By Temp\n");
 foreach (var item in Exer3Temp)
@@ -83,9 +99,6 @@ foreach (var item in Exer4)
 
 
 // Exercício 5 ------------------------------------------------------
-
-
-
 var maximum = bikes.Max(x => x.Registred + x.Casual);
 var minimum = bikes.Min(x => x.Registred + x.Casual);
 
