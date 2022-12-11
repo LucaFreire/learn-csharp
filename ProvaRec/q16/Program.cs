@@ -31,12 +31,13 @@ var Exer3Season = bikes.Join(days,
                 dia => dia.Day,
                 (bike,dia) => new{
                     Season = dia.Season,
-                    Soma = (bike.Casual + bike.Registred) / bike.Casual
+                    Cas = bike.Casual,
+                    Reg =  + bike.Registred
                 })
                 .GroupBy(xx => xx.Season)
                 .Select( x => new {
                     Season = x.Key,
-                    media = x.Select( gg => gg.Soma)
+                    media = x.Average( gg => gg.Cas + gg.Reg)
                 }
                 );
 
