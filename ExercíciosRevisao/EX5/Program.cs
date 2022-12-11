@@ -5,7 +5,7 @@
 // •	Cada caractere deve ser separado por um “_”.
 using System;
 
-Console.WriteLine(Criptografar("Digite Sua Mensagem"));
+Console.WriteLine(Criptografar("tHIGAS123"));
 
 string Criptografar(string msg)
 {
@@ -35,12 +35,10 @@ string Criptografar(string msg)
         }
 
         else if (Num.Contains(Strletter)) // Caso o caracter seja número
-        {
-            int Numletter = (int) Strletter;
-            txt+=Str[Numletter-48];
-        }
+            txt+=Str[int.Parse(Strletter.ToString())];
 
-        else txt+= Strletter; // Caso seja um caracter especial
+        else 
+            txt+= Strletter; // Caso seja um caracter especial
         
         txt+='_';
     }
