@@ -35,7 +35,7 @@ var Exer3Season = bikes.Join(days,
                     Reg =  + bike.Registred
                 })
                 .GroupBy(xx => xx.Season)
-                .Select( x => new {
+                .Select(x => new {
                     Season = x.Key,
                     media = x.Average( gg => gg.Cas + gg.Reg)
                 });
@@ -47,8 +47,9 @@ var Exer3Temp = bikes.Join(days,
                     Temporada = dia.Temp,
                     Cas = bike.Casual,
                     Reg = bike.Registred
-                }).GroupBy(xx => xx.Temporada )
-                .Select( x => new {
+                })
+                .GroupBy(xx => xx.Temporada)
+                .Select(x => new {
                     Temp = x.Key,
                     media = x.Average( gg => gg.Cas + gg.Reg)
                 });
@@ -60,8 +61,9 @@ var Exer3Weather = bikes.Join(days,
                     Weather = dia.Weather,
                     Cas = bike.Casual,
                     Reg = bike.Registred
-                }).GroupBy(xx => xx.Weather )
-                .Select( x => new {
+                })
+                .GroupBy(xx => xx.Weather)
+                .Select(x => new {
                     Weather = x.Key,
                     media = x.Average( gg => gg.Cas + gg.Reg)
                 });
@@ -105,45 +107,15 @@ var minimum = bikes.Min(x => x.Registred + x.Casual);
 var GetDiaMax = bikes.First(xx => xx.Casual + xx.Registred == maximum);
 var GetDiaMin = bikes.First(xx => xx.Casual + xx.Registred == minimum);
 
-var getMax = days.Where(zz => zz.Day == GetDiaMax.Day);
-var getMin = days.Where(zz => zz.Day == GetDiaMin.Day);
+var getMax = days.First(zz => zz.Day == GetDiaMax.Day);
+var getMin = days.First(zz => zz.Day == GetDiaMin.Day);
 
-var infoMax = getMax.Select(xx => new{
-    Dia = xx.Day,
-    Trampo = xx.IsWorkingDay,
-    Season = xx.Season,
-    Temp = xx.Temp,
-    Weather = xx.Weather
-});
+Console.WriteLine($"Valor Max: {maximum}\nDia: {getMax.Day}\nWeather: {getMax.Weather}\nTemp: {getMax.Temp}\nSeason: {getMax.Season}\nTrampo: {getMax.IsWorkingDay}");
 
-var infoMin = getMin.Select(xx => new{
-    Dia = xx.Day,
-    Trampo = xx.IsWorkingDay,
-    Season = xx.Season,
-    Temp = xx.Temp,
-    Weather = xx.Weather
-});
-
-Console.WriteLine($"Valor Max: {maximum} -- Dia: {infoMax.Select(x => x.Dia)}...."); // PQQQQQQQQQ????????
+Console.WriteLine($"Valor Min: {minimum}\nDia: {getMin.Day}\nWeather: {getMin.Weather}\nTemp: {getMin.Temp}\nSeason: {getMin.Season}\nTrampo: {getMin.IsWorkingDay}"); 
 
 
-// var infoMax = days.Where(zz => zz.Day == GetDiaMax.Day)
-//                 .Select(info => new{
-//                     Trampo = info.IsWorkingDay,
-//                     Clima = info.Weather,
-//                     Season = info.Season,
-//                     Temp = info.Temp,
-//                     Dia = info.Day
-//                 });
-//                                                          VER O PORQUE DE N FUNCIONAR
-// var infoMin = days.Where(zz => zz.Day == GetDiaMin.Day)
-//                 .Select(info => new{
-//                     Trampo = info.IsWorkingDay,
-//                     Clima = info.Weather,
-//                     Season = info.Season,
-//                     Temp = info.Temp,
-//                     Dia = info.Day
-//                 });
+// ------------------------------------------------------ ------------------------------------------------------ ------------------------------------------------------
 
 
 IEnumerable<DayInfo> getDays()
