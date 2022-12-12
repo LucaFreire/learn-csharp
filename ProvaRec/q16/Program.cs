@@ -9,12 +9,14 @@ var bikes = getSharings();
 
 
 // Exercício 1 ------------------------------------------------------
+Console.WriteLine("----------- EXERCÍCIO 1 -----------");
 var Exer1 = bikes.Average(x => x.Registred + x.Casual);
 
 Console.WriteLine($"Mean: {Exer1}");
 
 
 // Exercício 2 ------------------------------------------------------
+Console.WriteLine("\n----------- EXERCÍCIO 2 -----------");
 var Exer2 = bikes.GroupBy(x => x.Day / 30)
                 .Select(z => new{
                     Mes = z.Key,
@@ -26,6 +28,7 @@ foreach (var item in Exer2)
 
 
 // Exercício 3 ------------------------------------------------------
+Console.WriteLine("\n----------- EXERCÍCIO 3 -----------");
 var Exer3Season = bikes.Join(days,
                 bike => bike.Day,
                 dia => dia.Day,
@@ -68,20 +71,21 @@ var Exer3Weather = bikes.Join(days,
                     media = x.Average(gg => gg.Cas + gg.Reg)
                 });
 
-Console.WriteLine($"By Season\n");
+Console.WriteLine($"\nBy Season\n");
 foreach (var item in Exer3Season)
     Console.WriteLine($"Season: {item.Season} -- Mean: {item.media}");
 
-Console.WriteLine($"By Weather\n");
+Console.WriteLine($"\nBy Weather\n");
 foreach (var item in Exer3Weather)
     Console.WriteLine($"Temp: {item.Weather} -- Mean: {item.media}");
 
-Console.WriteLine($"By Temp\n");
+Console.WriteLine($"\nBy Temp\n");
 foreach (var item in Exer3Temp)
     Console.WriteLine($"Temp: {item.Temp} -- Mean: {item.media}");
 
 
 // Exercício 4 ------------------------------------------------------
+Console.WriteLine("\n----------- EXERCÍCIO 4 -----------");
 var Exer4 = bikes.Join(days,
                 bike => bike.Day,
                 dia => dia.Day,
@@ -92,15 +96,17 @@ var Exer4 = bikes.Join(days,
                 })
                 .GroupBy(tt => tt.Trampo)
                 .Select(vv => new{
-                    Trampo = vv.Select(x => x.Trampo),
+                    Trampo = vv.Key,
                     mean = vv.Average(x => x.Cas + x.Reg)
                 });
 
 foreach (var item in Exer4)
-    Console.WriteLine($"{item.Trampo} -- {item.mean}");
+    Console.WriteLine($"Trampo: {item.Trampo} -- Mean: {item.mean}");
 
 
 // Exercício 5 ------------------------------------------------------
+Console.WriteLine("\n----------- EXERCÍCIO 5 -----------");
+
 var maximum = bikes.Max(x => x.Registred + x.Casual);
 var minimum = bikes.Min(x => x.Registred + x.Casual);
 
@@ -108,9 +114,9 @@ var GetDiaMax = bikes.First(xx => xx.Casual + xx.Registred == maximum);
 var GetDiaMin = bikes.First(xx => xx.Casual + xx.Registred == minimum);
 
 var getMax = days.First(zz => zz.Day == GetDiaMax.Day);
-var getMin = days.First(zz => zz.Day == GetDiaMin.Day);
+var getMin = days.First(zz => zz.Day == GetDiaMin.Day); // First Retorna um objeto, where retorna uma lista de IEnumerable
 
-Console.WriteLine($"Valor Max: {maximum}\nDia: {getMax.Day}\nWeather: {getMax.Weather}\nTemp: {getMax.Temp}\nSeason: {getMax.Season}\nTrampo: {getMax.IsWorkingDay}");
+Console.WriteLine($"\nValor Max: {maximum}\nDia: {getMax.Day}\nWeather: {getMax.Weather}\nTemp: {getMax.Temp}\nSeason: {getMax.Season}\nTrampo: {getMax.IsWorkingDay}\n");
 
 Console.WriteLine($"Valor Min: {minimum}\nDia: {getMin.Day}\nWeather: {getMin.Weather}\nTemp: {getMin.Temp}\nSeason: {getMin.Season}\nTrampo: {getMin.IsWorkingDay}"); 
 
