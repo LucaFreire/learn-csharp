@@ -17,7 +17,6 @@ public class Controller
         if (queue2.Count > 20)
             queue2.Dequeue();
         
-
         return queue1.Average() - queue2.Average();
     }
 }
