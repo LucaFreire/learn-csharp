@@ -32,12 +32,12 @@ var Exer3Season = bikes.Join(days,
                 (bike,dia) => new{
                     Season = dia.Season,
                     Cas = bike.Casual,
-                    Reg =  + bike.Registred
+                    Reg = bike.Registred
                 })
                 .GroupBy(xx => xx.Season)
                 .Select(x => new {
                     Season = x.Key,
-                    media = x.Average( gg => gg.Cas + gg.Reg)
+                    media = x.Average(gg => gg.Cas + gg.Reg)
                 });
 
 var Exer3Temp = bikes.Join(days,
@@ -51,7 +51,7 @@ var Exer3Temp = bikes.Join(days,
                 .GroupBy(xx => xx.Temporada)
                 .Select(x => new {
                     Temp = x.Key,
-                    media = x.Average( gg => gg.Cas + gg.Reg)
+                    media = x.Average(gg => gg.Cas + gg.Reg)
                 });
 
 var Exer3Weather = bikes.Join(days,
@@ -65,7 +65,7 @@ var Exer3Weather = bikes.Join(days,
                 .GroupBy(xx => xx.Weather)
                 .Select(x => new {
                     Weather = x.Key,
-                    media = x.Average( gg => gg.Cas + gg.Reg)
+                    media = x.Average(gg => gg.Cas + gg.Reg)
                 });
 
 Console.WriteLine($"By Season\n");
