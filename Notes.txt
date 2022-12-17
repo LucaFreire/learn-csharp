@@ -230,6 +230,3 @@ a classe erda da interface todas as funções da interface(é utilizada p/ futur
 pois o código fica mais atualizado dessa maneira)
 
 ==============================================================================================
-
-
-
