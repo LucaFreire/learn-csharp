@@ -114,7 +114,7 @@ var GetDiaMax = bikes.First(xx => xx.Casual + xx.Registred == maximum);
 var GetDiaMin = bikes.First(xx => xx.Casual + xx.Registred == minimum);
 
 var getMax = days.First(zz => zz.Day == GetDiaMax.Day);
-var getMin = days.First(zz => zz.Day == GetDiaMin.Day); // First Retorna um objeto, where retorna uma lista de IEnumerable
+var getMin = days.First(zz => zz.Day == GetDiaMin.Day); // First Retorna um objeto, where retorna uma lista de IEnumerable('objetos')
 
 Console.WriteLine($"\nValor Max: {maximum}\nDia: {getMax.Day}\nWeather: {getMax.Weather}\nTemp: {getMax.Temp}\nSeason: {getMax.Season}\nTrampo: {getMax.IsWorkingDay}\n");
 
