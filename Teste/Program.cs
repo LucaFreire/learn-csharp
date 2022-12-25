@@ -1,15 +1,30 @@
 ﻿
+// Classe
+PointClass pc = new PointClass(10,20);
+Console.WriteLine("Classe criada");
+pc.ShowValues();
+ModifyClassValues(pc);
+Console.WriteLine("Classe modificada");
+pc.ShowValues();
 
-var a = 2;
-Console.WriteLine(a);
+// Struct
+PointStruct st = new PointStruct(10,20);
+Console.WriteLine("\nStruct criada");
+st.ShowValues();
+ModifyStructValues(st);
+Console.WriteLine("Struct modificada");
+st.ShowValues();
 
-var b = 3;
-Console.WriteLine(b);
 
-var c = a;
 
-a = b;
-Console.WriteLine(a);
+static void ModifyClassValues(PointClass pc)
+{
+    pc.no1 += 10;
+    pc.no2 += 10;
+}
 
-b = c;
-Console.WriteLine(b);
+static void ModifyStructValues(PointStruct st)
+{
+    st.no1 += 10;
+    st.no2 += 10;
+}

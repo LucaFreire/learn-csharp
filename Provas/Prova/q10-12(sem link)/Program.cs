@@ -5,30 +5,30 @@ using static System.Console;
 int _count = 0;
 Universidade uni = new Universidade();
 
-Pesquisa("As disciplinas com mais de 10 caractéres no nome.");
-Pesquisador.Pesquisa1(uni);
-WriteLine();
+// Pesquisa("As disciplinas com mais de 10 caractéres no nome.");
+// Pesquisador.Pesquisa1(uni);
+// WriteLine();
 
-Pesquisa("Os departamentos, em ordem alfabética, com o número de disciplinas.");
-Pesquisador.Pesquisa2(uni);
-WriteLine();
+// Pesquisa("Os departamentos, em ordem alfabética, com o número de disciplinas.");
+// Pesquisador.Pesquisa2(uni);
+// WriteLine();
 
-Pesquisa("Liste os alunos e suas idades com seus respectivos professores.");
-Pesquisador.Pesquisa3(uni);
-WriteLine();
+// Pesquisa("Liste os alunos e suas idades com seus respectivos professores.");
+// Pesquisador.Pesquisa3(uni);
+// WriteLine();
 
-Pesquisa("Liste os professores e seus salários com seus respectivos alunos.");
-Pesquisador.Pesquisa4(uni);
-WriteLine();
+// Pesquisa("Liste os professores e seus salários com seus respectivos alunos.");
+// Pesquisador.Pesquisa4(uni);
+// WriteLine();
 
-Pesquisa("Top 10 Professores com mais alunos da universidade.");
-Pesquisador.Pesquisa5(uni);
-WriteLine();
+// Pesquisa("Top 10 Professores com mais alunos da universidade.");
+// Pesquisador.Pesquisa5(uni);
+// WriteLine();
 
-Pesquisa("Considerando que todo aluno custa 300 reais mais o salário dos seus professores"
-    + " divido entre seus colegas de classe. Liste os alunos e seus respectivos custos.");
-Pesquisador.Pesquisa6(uni);
-WriteLine();
+// Pesquisa("Considerando que todo aluno custa 300 reais mais o salário dos seus professores"
+//     + " divido entre seus colegas de classe. Liste os alunos e seus respectivos custos.");
+// Pesquisador.Pesquisa6(uni);
+// WriteLine();
 
 ReadKey(true);
 void Pesquisa(string texto) => WriteLine($"Pesquisa {++_count}. {texto}\n");
@@ -51,123 +51,33 @@ public class Pesquisador
     /// </summary>
     public static void Pesquisa2(Universidade uni)
     {
-        var df = uni.Departamentos.OrderBy(j => j.Nome);
-        var df2 = uni.Disciplinas;
-        int mat = 0;
-
+        var df = uni.Disciplinas
+            .Join(uni.Departamentos, 
+            ds => ds.DepartamentoID,
+            dep => dep.ID,
+            (ds,dep) => new{
+                depar = dep.Nome,
+                dis = ds.Nome
+            })
+            .GroupBy(z => z.depar)
+            .OrderBy(c => c.Key)
+            .Select(i => new {
+                Disciplina = i.Key,
+                total = i.Count()});
+        
         foreach (var item in df)
         {
-           foreach (var item2 in df2)
-                if (item2.DepartamentoID == item.ID)
-                    mat+=1;
-           
-           Console.WriteLine($"Departamento: {item.Nome} -- Disciplinas: {mat}");
-           mat = 0;
+            Console.WriteLine($"Nome: {item.Disciplina} -- Total: {item.total}");
         }
     }
 
     /// <summary>
     /// Liste os alunos com seus respectivos professores
     /// </summary>
-    public static void Pesquisa3(Universidade uni)
-    {
-        var AlunoDf = uni.Alunos;
-        var ProfDf = uni.Professores;
 
-        foreach (var aluno in AlunoDf)
-        {
-            int len = aluno.TurmasMatriculados.Count;
-            Console.WriteLine($"\nAluno: {aluno.Nome}");
 
-            foreach (var prof in ProfDf)
-                for (int i = 0; i < len; i++)   
-                    if (prof.DepartamentoID == aluno.TurmasMatriculados[i])
-                        Console.WriteLine($"Professor: {prof.Nome}");        
-        }
-    }
-
-    /// <summary>
-    /// Liste o número de alunos que cada professor possui.
-    /// </summary>
-    public static void Pesquisa4(Universidade uni)
-    {
-        var AlunoDf = uni.Alunos;
-        var ProfDf = uni.Professores;
-
-        int CountAluno = 0;
-
-        foreach (var prof in ProfDf)
-        {
-            CountAluno = 0;
-            foreach (var aluno in AlunoDf)
-            {
-                int len = aluno.TurmasMatriculados.Count;
-
-                for (int i = 0; i < len; i++)
-                    if (prof.DepartamentoID == aluno.TurmasMatriculados[i])
-                        CountAluno+=1;
-            }
-            Console.WriteLine($"Professor: {prof.Nome} R$ {prof.Salario} -- Alunos: {CountAluno} ");
-        }
-    }
-
-    /// <summary>
-    /// Top 10 Professores com mais alunos da universidade
-    /// </summary>
-    public static void Pesquisa5(Universidade uni)
-    {
-        List<Professor> lista = new List<Professor>();
-        var AlunoDf = uni.Alunos;
-        var ProfDf = uni.Professores;
-
-        foreach (var prof in ProfDf)
-        {
-            foreach (var aluno in AlunoDf)
-            {
-                int len = aluno.TurmasMatriculados.Count;
-                for (int i = 0; i < len; i++)
-                    if (prof.DepartamentoID == aluno.TurmasMatriculados[i])
-                        prof.QtdAlunos+=1;
-            }
-            lista.Add(prof);
-        }
-
-        var x = lista.OrderByDescending(j => j.QtdAlunos);
-        int Count = 0;
-        foreach (var item in x)
-        {
-            Count+=1;
-            Console.WriteLine($"{Count}° Professor: {item.Nome} -- Alunos: {item.QtdAlunos}");
-        }
-    }
-
-    /// <summary>
-    /// Considerando que todo aluno custa 300 reais mais o salário dos seus professores
-    /// divido entre seus colegas de classe. Liste os alunos e seus respectivos custos
-    /// </summary>
-    public class Alunos
-    {
-        public string nome { get; set; }
-        public double price { get; set; }
-    }
-    public static void Pesquisa6(Universidade uni)
-    {
-        // var AlunoDf = uni.Alunos;
-        // var ProfDf = uni.Professores;
-
-        // foreach (var aluno in AlunoDf)
-        // {
-        //     int len = aluno.TurmasMatriculados.Count;
-        //     Console.WriteLine($"\nAluno: {aluno.Nome}");
-
-        //     foreach (var prof in ProfDf)
-        //         for (int i = 0; i < len; i++)   
-        //             if (prof.DepartamentoID == aluno.TurmasMatriculados[i])
-        //                 aluno.Valor+=prof.Salario;       
-        //                     Console.WriteLine($"Preço: {aluno.Valor + 300)}");
-        // }
-    }
 }
+
 
 
 public class Elemento
