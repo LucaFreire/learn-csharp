@@ -64,16 +64,16 @@ List<string> ex3 = new List<string>(){"mum", "amsterdam", "bloom"};
 
 void Exer4(List<int> list)
 {
-    var query = list.OrderBy(x => x)
+    var query = list
     .OrderByDescending(x => x)
     .Take(5);
 
     foreach (var item in query)
-        Console.WriteLine(item);
+        Console.Write(item + " ");
 }
 
 List<int> ex4 = new List<int>(){78, -9, 0, 23, 54,  21, 7, 86};
-// Exer4(ex4);
+Exer4(ex4);
 
 // ------------------------------------------------------------------------------------------------------------
 
@@ -127,5 +127,5 @@ void Exer7(List<string> list)
 }
 
 List<string> ex7 = new List<string>(){"plane", "ferry", "car", "bike"};
-Exer7(ex7);
+// Exer7(ex7);
 
