@@ -110,6 +110,7 @@ void Exer6(List<double> array1, List<double> array2)
         // x = array1's element  --  y = array2's element
     
     Console.WriteLine(query);
+    
 }
 List<double> array1 = new List<double>(){1, 2, 3};
 List<double> array2 = new List<double>(){4, 5, 6};
