@@ -107,7 +107,7 @@ void Exer6(List<double> array1, List<double> array2)
 {
     // Zip's method is like an uniun between 2 things
     var query = array1.Zip(array2, (x,y) => x * y).Sum();
-        // x = Element's array1  --  y = Element's array2
+        // x = array1's element  --  y = array2's element
     
     Console.WriteLine(query);
 }
