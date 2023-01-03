@@ -110,7 +110,7 @@ var GetDiaMin = bikes.First(xx => xx.Casual + xx.Registred == minimum);
 var getMax = days.First(zz => zz.Day == GetDiaMax.Day);
 var getMin = days.First(zz => zz.Day == GetDiaMin.Day);
 
-Console.WriteLine($"Valor Max: {maximum}\nDia: {getMax.Day}\nWeather: {getMax.Weather}\nTemp: {getMax.Temp}\nSeason: {getMax.Season}\nTrampo: {getMax.IsWorkingDay}");
+Console.WriteLine($"Valor Max: {maximum}\nDia: {getMax.Day}\nWeather: {getMax.Weather}\nTemp: {getMax.Temp}\nSeason: {getMax.Season}\nTrampo: {getMax.IsWorkingDay}\n");
 
 Console.WriteLine($"Valor Min: {minimum}\nDia: {getMin.Day}\nWeather: {getMin.Weather}\nTemp: {getMin.Temp}\nSeason: {getMin.Season}\nTrampo: {getMin.IsWorkingDay}"); 
 
