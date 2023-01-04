@@ -5,6 +5,70 @@ using System.Windows.Forms;
 using System.Drawing.Imaging;
 using System.Runtime.InteropServices;
 
+float[] equalization(
+    (Bitmap bmp, float[] img) t,
+    float threshold = 0f,
+    float db = 0.05f)
+{
+    int[] histogram = hist(t.img, db);
+
+    int dropCount = (int)(t.img.Length * threshold);
+    
+    float min = 0;
+    int droped = 0;
+    for (int i = 0; i < histogram.Length; i++)
+    {
+        droped += histogram[i];
+        if (droped > dropCount)
+        {
+            min = i * db;
+            break;
+        }
+    }
+
+    float max = 0;
+    droped = 0;
+    for (int i = histogram.Length - 1; i > -1; i--)
+    {
+        droped += histogram[i];
+        if (droped > dropCount)
+        {
+            max = i * db;
+            break;
+        }
+    }
+
+    var r = 1 / (max - min);
+    
+    for (int i = 0; i < t.img.Length; i++)
+    {
+        float newValue = (t.img[i] - min) * r;
+        if (newValue > 1f)
+            newValue = 1f;
+        else if (newValue < 0f)
+            newValue = 0f;
+        t.img[i] = newValue;
+    }
+    
+    return t.img;
+}
+
+void showHist((Bitmap bmp, float[] img) t, float db = 0.05f)
+{
+    var histogram = hist(t.img, db);
+    var histImg = drawHist(histogram);
+    showBmp(histImg);
+}
+
+(Bitmap bmp, float[] img) open(string path)
+{
+    var bmp = Bitmap.FromFile(path) as Bitmap;
+    var byteArray = bytes(bmp);
+    var dataCont = continuous(byteArray);
+    var gray = grayScale(dataCont);
+    return (bmp, gray);
+}
+
 float[] inverse(float[] img)
 {
     for (int i = 0; i < img.Length; i++)
@@ -38,6 +102,13 @@ Image drawHist(int[] hist)
     }
 
     return bmp;
+}
+
+void show((Bitmap bmp, float[] gray) t)
+{
+    var bytes = discretGray(t.gray);
+    var image = img(t.bmp, bytes);
+    showBmp(image);
 }
 
 int[] hist(float[] img, float db = 0.05f)
@@ -132,7 +203,7 @@ Image img(Image img, byte[] bytes)
     var bmp = img as Bitmap;
     var data = bmp.LockBits(
         new Rectangle(0, 0, img.Width, img.Height),
-        ImageLockMode.ReadOnly,
+        ImageLockMode.ReadWrite,
         PixelFormat.Format24bppRgb);
     
     byte[] temp = new byte[data.Stride * data.Height];
@@ -152,7 +223,7 @@ Image img(Image img, byte[] bytes)
     return img;
 }
 
-void show(Image img)
+void showBmp(Image img) // Mostra a imagem (input: Image)
 {
     ApplicationConfiguration.Initialize();
 
@@ -182,13 +253,15 @@ void show(Image img)
     Application.Run(form);
 }
 
-var planta = Bitmap.FromFile("");
-var bytesPlanta = bytes(planta);
-var floatPlanta = continuous(bytesPlanta);
-var grayPlanta = grayScale(floatPlanta);
+void BinarizarImagem((Bitmap bmp, float[] img) t, float tresholder = 0.01f) // Transforma imagem em binário
+{
+    for (int i = 0; i < t.img.Length; i++)
+        t.img[i] = t.img[i] > tresholder ? 1 : 0;
+        //  Ternário: (cond) ? Sim : Não
+}
 
-img(planta, discretGray(grayPlanta));
 
-var histogram = hist(grayPlanta);
-var histogramImg = drawHist(histogram);
-show(histogramImg);
+
+var image = open("dificil.jpg");
+BinarizarImagem(image, 0.5f);
+show(image);
