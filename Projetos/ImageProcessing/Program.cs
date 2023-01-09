@@ -7,6 +7,91 @@ using System.Collections.Generic;
 using System.Runtime.InteropServices;
 
 
+(Bitmap bmp, float[] img) sobel((Bitmap bmp, float[] img) t)
+{
+    float[] kernel = new float[]{1,0,-1};
+    float[] result = new float[t.img.Length];
+    
+    var Img = t.bmp;
+    var _img = t.img;
+    
+    float fora = -0f;
+    float soma = 0f;
+
+    for (int i = 1; i < Img.Width - 1; i++) // Y
+    {
+        for (int j = 1; j < Img.Height - 1; j++)
+        {
+            int index = i + j * Img.Width;
+            soma = _img[index - 1] + _img[index] + _img[index + 1];
+            result[index] = soma + _img[i];
+        }
+    }
+
+    float a = 0;
+    float b = 0;
+    soma = 0;
+
+    //  1 4 5 6 7 2
+    for (int j = 1; j < Img.Height - 1; j++)
+    {    
+        for (int k = 0; k < kernel.Length-1; k++)
+        {
+            soma += _img[k] + _img[k + 1];
+        }
+        a = soma;
+        b = soma - _img[0] + _img[kernel.Length-1];
+
+        for (int i = 1; i < Img.Width - 1; i++) // X
+        {
+                a = b;
+                b += _img[i+kernel.Length-1] - _img[i];
+            result[i] = a - b; 
+        }
+    }
+    
+    return (t.bmp , result);
+}
+
+(Bitmap bmp, float[] img) conv(
+    (Bitmap bmp, float[] img) t, float[] kernel)
+{
+    var N = (int)Math.Sqrt(kernel.Length);
+    var wid = t.bmp.Width;
+    var hei = t.bmp.Height;
+    var _img = t.img;
+    float[] result = new float[_img.Length];
+
+    for (int j = N / 2; j < hei - N / 2; j++)
+    {
+        for (int i = N / 2; i < wid - N / 2; i++)
+        {
+            float sum = 0;
+
+            for (int k = 0; k < N; k++)
+            {
+                for (int l = 0; l < N; l++)
+                {
+                    sum += _img[i + k - (N / 2) + (j + l - (N / 2)) * wid] * 
+                        kernel[k + l * N];
+                }
+            }
+
+            if (sum > 1f)
+                sum = 1f;
+            else if (sum < 0f)
+                sum = 0f;
+
+            result[i + j * wid] = sum;
+        }
+    }
+
+    var Imgbytes = discretGray(result);
+    img(t.bmp, Imgbytes);
+
+    return (t.bmp, result);
+}
+
 (Bitmap bmp, float[] img) morfology((Bitmap bmp, float[] img) t, float[] kernel, bool erosion)
 {
     bool match = false;
@@ -66,7 +151,6 @@ using System.Runtime.InteropServices;
 
     return (t.bmp, newImg);
 }
-
 
 List<Rectangle> segmentation((Bitmap bmp, float[] img) t)
 {
@@ -462,24 +546,9 @@ void showRects((Bitmap bmp, float[] img) t, List<Rectangle> list)
     showBmp(t.bmp);
 }
 
-var image = open("media.jpg");
-inverse(image);
-for (int i = 0; i < 10; i++)
-{
-    image = morfology(image, new float[]
-    {
-        0f, 1f, 0f,
-        1f, 1f, 1f,
-        0f, 1f, 0f
-    }, true);
-    image = morfology(image, new float[]
-    {
-        0f, 1f, 0f,
-        1f, 1f, 1f,
-        0f, 1f, 0f
-    }, false);
-}
-inverse(image);
-img(image.bmp, discretGray(image.img));
-var rects = segmentationT(image, 35);
-showRects(image, rects);
+var image = open("image.png");
+
+var sobell = sobel(image);
+
+show(sobell);
+
