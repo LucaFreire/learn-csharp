@@ -1,60 +1,187 @@
 using System;
 using System.Linq;
 using System.Drawing;
+using System.Numerics;
 using System.Windows.Forms;
 using System.Drawing.Imaging;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 
 
-(Bitmap bmp, float[] img) sobel((Bitmap bmp, float[] img) t)
+
+float[] rotation(float degree)
 {
-    float[] kernel = new float[]{1,0,-1};
-    float[] result = new float[t.img.Length];
-    
-    var Img = t.bmp;
-    var _img = t.img;
-    
-    float fora = -0f;
-    float soma = 0f;
-
-    for (int i = 1; i < Img.Width - 1; i++) // Y
+    float radian = degree / 180 * MathF.PI;
+    float cos = MathF.Cos(radian);
+    float sin = MathF.Sin(radian);
+    return new float[]
     {
-        for (int j = 1; j < Img.Height - 1; j++)
+        cos, -sin, 0,
+        sin,  cos, 0,
+          0,    0, 1
+    };
+}
+
+float[] translate(float dx, float dy)
+{
+    return new float[]
+    {
+        1, 0, dx,
+        0, 1, dy,
+        0, 0, 1
+    };
+}
+
+float[] translateFromSize(float dx, float dy,
+    (Bitmap bmp, float[] img) t)
+{
+    return new float[]
+    {
+        1, 0, dx * t.bmp.Width,
+        0, 1, dy * t.bmp.Height,
+        0, 0, 1
+    };
+}
+
+float[] scale(float dx, float dy)
+{
+    return new float[]
+    {
+        dx, 0, 0,
+        0, dy, 0,
+        0, 0, 1
+    };
+}
+
+float[] shear(float cx, float cy)
+{
+    return new float[]
+    {
+        1, cx, 0,
+        cy, 1, 0,
+        0, 0, 1
+    };
+}
+
+(Bitmap bmp, float[] img) affine((Bitmap bmp, float[] img) t,
+    params float[] p)
+{
+    var _img = t.img;
+    float[] nova = new float[_img.Length];
+    int wid = t.bmp.Width;
+    int hei = t.bmp.Height;
+    int x = 0;
+    int y = 0;
+    int index = 0;
+
+    for (int i = 0; i < wid; i++)
+    {
+        for (int j = 0; j < hei; j++)
         {
-            int index = i + j * Img.Width;
-            soma = _img[index - 1] + _img[index] + _img[index + 1];
-            result[index] = soma + _img[i];
+            x = (int)(p[0] * i + p[1] * j + p[2]);
+            y = (int)(p[3] * i + p[4] * j + p[5]);
+
+            if(x < 0 || x >= wid || y < 0 || y >= wid)
+                continue;
+            else
+            {
+                index = (int)(x + y * wid);
+                nova[index] = _img[i+j * wid];
+            }
         }
     }
 
-    float a = 0;
-    float b = 0;
-    soma = 0;
+    var Imgbytes = discretGray(nova);
+    img(t.bmp, Imgbytes);
 
-    //  1 4 5 6 7 2
-    for (int j = 1; j < Img.Height - 1; j++)
-    {    
-        for (int k = 0; k < kernel.Length-1; k++)
+    return (t.bmp, nova);
+}
+
+
+(Bitmap bmp, float[] img) Mineaffine((Bitmap bmp, float[] img) t, params float[] p)
+{
+
+    float[] retorno = new float[t.img.Length];
+    int index = 0;
+
+
+    for (int j = 0; j < t.bmp.Height; j++) // Y
+    {
+        for (int i = 0; i < t.bmp.Width; i++) // X
         {
-            soma += _img[k] + _img[k + 1];
+            
+            index = i + j * t.bmp.Width;
+
+            float x1 = (int)(p[0] * i + p[1] * j + p[2]);
+
+            float y1 = (int)(p[3] * i + p[4] * j + p[5]);
+
+            if (x1 >= t.bmp.Width || x1 < 0 || y1 >= t.bmp.Height  || y1 < 0)
+                continue;
+
+            retorno[(int)(x1 + y1 * t.bmp.Width)] = t.img[index];
+
         }
-        a = soma;
-        b = soma - _img[0] + _img[kernel.Length-1];
+    }
+    return (t.bmp, retorno);
+}
 
-        for (int i = 1; i < Img.Width - 1; i++) // X
+(Bitmap bmp, float[] img) sobel((Bitmap bmp, float[] img) t,
+    bool dir = true)
+{
+    var im = t.img;
+    float[] tempo = new float[im.Length];
+    float[] final = new float[im.Length];
+    int wid = t.bmp.Width;
+    int hei = t.bmp.Height;
+
+    for (int i = 1; i < wid - 1; i++)
+    {
+        float sum = 
+            im[i + 0 * wid] + 
+            im[i + 1 * wid] + 
+            im[i + 2 * wid];
+        for (int j = 1; j < hei - 1; j++)
         {
-                a = b;
-                b += _img[i+kernel.Length-1] - _img[i];
-            result[i] = a - b; 
+            int index = i + j * wid;
+            tempo[index] = im[index] + sum;
+
+            sum -= im[index - 1];
+            sum += im[index + 1];
         }
     }
     
-    return (t.bmp , result);
+    for (int j = 1; j < hei - 1; j++)
+    {
+        float seq = 
+            im[0 + j * wid] + 
+            im[1 + j * wid];
+        for (int i = 1; i < wid - 1; i++)
+        {
+            float nextSeq = 
+                im[i + j * wid] +
+                im[i + 1 + j * wid];
+
+            int index = i + j * wid;
+            float value = dir ? seq - nextSeq : nextSeq - seq;
+            if (value > 1f)
+                value = 1f;
+            else if (value < 0f)
+                value = 0f;
+            final[index] = value;
+
+            seq = nextSeq;
+        }
+    }
+
+    var Imgbytes = discretGray(final);
+    img(t.bmp, Imgbytes);
+
+    return (t.bmp, final);
 }
 
 (Bitmap bmp, float[] img) conv(
-    (Bitmap bmp, float[] img) t, float[] kernel)
+    (Bitmap bmp, float[] img) t, params float[] kernel)
 {
     var N = (int)Math.Sqrt(kernel.Length);
     var wid = t.bmp.Width;
@@ -79,6 +206,7 @@ using System.Runtime.InteropServices;
 
             if (sum > 1f)
                 sum = 1f;
+                
             else if (sum < 0f)
                 sum = 0f;
 
@@ -546,9 +674,8 @@ void showRects((Bitmap bmp, float[] img) t, List<Rectangle> list)
     showBmp(t.bmp);
 }
 
+
 var image = open("image.png");
-
-var sobell = sobel(image);
-
-show(sobell);
+image = Mineaffine(image, rotation(10f));
+show(image);
 
