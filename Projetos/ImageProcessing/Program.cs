@@ -7,65 +7,181 @@ using System.Drawing.Imaging;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 
+(Bitmap bmp, float[] img) codigoMisteriosoHaha((Bitmap bmp, float[] img) org) // Pega a media
+{
+    float[] Imagem = org.img;
+    float[] ArrayReturn = new float[Imagem.Length];
+    int ImageWid = org.bmp.Width;
+    int ImageHeight = org.bmp.Height;
+
+    for (int i = 0; i < ImageHeight; i++) // Y == i
+    {
+        for (int j = 0; j < ImageWid; j++) // X == j
+        {
+            int index = j + i * ImageWid;
+
+            if (Imagem[index] > 0f || j == 0 || i == 0 || j == ImageWid - 1 || i == ImageHeight - 1) // P/ não sair do index
+            {
+                ArrayReturn[index] = Imagem[index];
+                continue;
+            }
+
+            var indexDeAlgo = j - 1 + (i - 1) * ImageWid;
+            var indexDeAlgo2 = j + 1 + (i - 1) * ImageWid;
+
+            float Media1 = (Imagem[indexDeAlgo] + Imagem[indexDeAlgo2]) / 2; // Média de algo
+
+            var IndexDeAlgo3 = j - 1 + (i + 1) * ImageWid;
+
+            var IndexDeAlgo4 = j + 1 + (i + 1) * ImageWid;
+
+            float Media2 = (Imagem[IndexDeAlgo3] + Imagem[IndexDeAlgo4]) / 2; // Média de algo 2
+
+            ArrayReturn[index] = (Media1 + Media2) / 2; // A lista recebe a soma das médias e divide por 2
+        }
+    }
+
+    var Imagemm = discretGray(ArrayReturn);
+    
+    img(org.bmp, Imagemm);
+
+    return (org.bmp, ArrayReturn);
+}
 
 
-float[] rotation(float degree)
+
+(Bitmap bmp, float[] img) outroGatokk((Bitmap bmp, float[] img) org, float v1, float v2)
+{
+    int ImgWid = org.bmp.Width;
+    int ImgHei = org.bmp.Height;
+    Bitmap Img2 = new Bitmap((int)(v1 * ImgWid),(int)(v2 * ImgHei));
+    int Img2Wid = Img2.Width;
+    int Img2Hei = Img2.Height;
+
+    float[] ArrayImg = org.img;
+    float[] Img2Size = new float[Img2Wid * Img2Hei];
+
+
+    for (int i = 0; i < ImgWid; i++)
+    {
+        for (int j = 0; j < ImgHei; j++)
+        {
+            Img2Size[i + j * Img2Wid] = ArrayImg[i + j * ImgWid];
+        }
+    }
+
+    var GrayImg = discretGray(Img2Size);
+    var Imagem = img(Img2, GrayImg) as Bitmap;
+
+    var ImagemReturn = (Imagem, Img2Size);
+
+    ImagemReturn = affine(ImagemReturn, scale(v1, v2));
+    
+    return ImagemReturn;
+}
+
+
+
+
+
+
+
+(Bitmap bmp, float[] img) Mineaffine((Bitmap bmp, float[] img) t, params float[] p)
+{
+
+    float[] retorno = new float[t.img.Length];
+    int index = 0;
+
+
+    for (int j = 0; j < t.bmp.Height; j++) // Y
+    {
+        for (int i = 0; i < t.bmp.Width; i++) // X
+        {
+            
+            index = i + j * t.bmp.Width;
+
+            float x1 = (int)(p[0] * i + p[1] * j + p[2]);
+
+            float y1 = (int)(p[3] * i + p[4] * j + p[5]);
+
+            if (x1 >= t.bmp.Width || x1 < 0 || y1 >= t.bmp.Height  || y1 < 0)
+                continue;
+
+            retorno[(int)(x1 + y1 * t.bmp.Width)] = t.img[index];
+
+        }
+    }
+    return (t.bmp, retorno);
+}
+
+Matrix4x4 mat(params float[] arr)
+{
+    return new Matrix4x4(
+        arr[0], arr[1], arr[2], 0,
+        arr[3], arr[4], arr[5], 0,
+        arr[6], arr[7], arr[8], 0,
+             0,      0,      0, 1
+    );
+}
+
+Matrix4x4 rotation(float degree)
 {
     float radian = degree / 180 * MathF.PI;
     float cos = MathF.Cos(radian);
     float sin = MathF.Sin(radian);
-    return new float[]
-    {
+    return mat(
         cos, -sin, 0,
         sin,  cos, 0,
           0,    0, 1
-    };
+    );
 }
 
-float[] translate(float dx, float dy)
+Matrix4x4 translate(float dx, float dy)
 {
-    return new float[]
-    {
+    return mat(
         1, 0, dx,
         0, 1, dy,
         0, 0, 1
-    };
+    );
 }
 
-float[] translateFromSize(float dx, float dy,
+Matrix4x4 translateFromSize(float dx, float dy,
     (Bitmap bmp, float[] img) t)
 {
-    return new float[]
-    {
+    return mat(
         1, 0, dx * t.bmp.Width,
         0, 1, dy * t.bmp.Height,
         0, 0, 1
-    };
+    );
 }
 
-float[] scale(float dx, float dy)
+Matrix4x4 scale(float dx, float dy)
 {
-    return new float[]
-    {
+    return mat(
         dx, 0, 0,
         0, dy, 0,
         0, 0, 1
-    };
+    );
 }
 
-float[] shear(float cx, float cy)
+Matrix4x4 shear(float cx, float cy)
 {
-    return new float[]
-    {
+    return mat(
         1, cx, 0,
         cy, 1, 0,
         0, 0, 1
-    };
+    );
 }
 
 (Bitmap bmp, float[] img) affine((Bitmap bmp, float[] img) t,
-    params float[] p)
+    Matrix4x4 mat)
 {
+    float[] p = new float[]
+    {
+        mat.M11, mat.M12, mat.M13,
+        mat.M21, mat.M22, mat.M23,
+        mat.M31, mat.M32, mat.M33,
+    };
     var _img = t.img;
     float[] nova = new float[_img.Length];
     int wid = t.bmp.Width;
@@ -95,35 +211,6 @@ float[] shear(float cx, float cy)
     img(t.bmp, Imgbytes);
 
     return (t.bmp, nova);
-}
-
-
-(Bitmap bmp, float[] img) Mineaffine((Bitmap bmp, float[] img) t, params float[] p)
-{
-
-    float[] retorno = new float[t.img.Length];
-    int index = 0;
-
-
-    for (int j = 0; j < t.bmp.Height; j++) // Y
-    {
-        for (int i = 0; i < t.bmp.Width; i++) // X
-        {
-            
-            index = i + j * t.bmp.Width;
-
-            float x1 = (int)(p[0] * i + p[1] * j + p[2]);
-
-            float y1 = (int)(p[3] * i + p[4] * j + p[5]);
-
-            if (x1 >= t.bmp.Width || x1 < 0 || y1 >= t.bmp.Height  || y1 < 0)
-                continue;
-
-            retorno[(int)(x1 + y1 * t.bmp.Width)] = t.img[index];
-
-        }
-    }
-    return (t.bmp, retorno);
 }
 
 (Bitmap bmp, float[] img) sobel((Bitmap bmp, float[] img) t,
@@ -674,8 +761,12 @@ void showRects((Bitmap bmp, float[] img) t, List<Rectangle> list)
     showBmp(t.bmp);
 }
 
+var image = open("shuregui.png");
 
-var image = open("image.png");
-image = Mineaffine(image, rotation(10f));
+image = affine(image,
+    translateFromSize(.5f, .5f, image) *
+    rotation(25f) * 
+    translateFromSize(-.5f, -.5f, image)
+    );
+
 show(image);
-
