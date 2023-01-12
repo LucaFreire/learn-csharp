@@ -7,51 +7,94 @@ using System.Drawing.Imaging;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 
-(Bitmap bmp, float[] img) codigoMisteriosoHaha((Bitmap bmp, float[] img) org) // Pega a media
+(Bitmap bmp, float[] img) PreencheMeio((Bitmap bmp, float[] img) org) 
 {
     float[] Imagem = org.img;
     float[] ArrayReturn = new float[Imagem.Length];
-    int ImageWid = org.bmp.Width;
-    int ImageHeight = org.bmp.Height;
+    int ImageWid = org.bmp.Width; // Substituir
+    int ImageHeight = org.bmp.Height; // Substituir
+    bool flag = false;
 
-    for (int i = 0; i < ImageHeight; i++) // Y == i
+    for (int j = 5; j < ImageHeight - 5; j++) // Y
     {
-        for (int j = 0; j < ImageWid; j++) // X == j
+        for (int i = 5; i < ImageWid - 5; i++) // X
         {
-            int index = j + i * ImageWid;
 
-            if (Imagem[index] > 0f || j == 0 || i == 0 || j == ImageWid - 1 || i == ImageHeight - 1) // P/ não sair do index
+            int index = i + j * ImageWid;
+
+            if (Imagem[index] == 0f) // P/ não sair do index e apenas pegar pixel preto
             {
-                ArrayReturn[index] = Imagem[index];
-                continue;
+                float newIndexCorner1 = (i - 1) + ((j - 1) * ImageWid);
+                float newIndexCorner2 = (i + 1) + ((j - 1) * ImageWid);
+                float newIndexCorner3 = (i + 1) + ((j + 1) * ImageWid);
+                float newIndexCorner4 = (i + 1) + ((j + 1) * ImageWid);
+
+                for (int k = 1; true; k++)
+                {
+
+                    if (k % 2 == 0)
+                    {
+                        newIndexCorner1 -=  k;
+                        newIndexCorner2 +=  k;
+
+                        newIndexCorner3 -= k;
+                        newIndexCorner4 += k;
+
+                        continue;
+                    }
+
+                        newIndexCorner1 -= k * ImageWid;
+                        newIndexCorner2 -= k * ImageWid;
+
+                        newIndexCorner3 += k * ImageWid;
+                        newIndexCorner4 += k * ImageWid;
+
+                     
+
+                    if (Imagem[ (int) newIndexCorner1] >= 1 && Imagem[(int) newIndexCorner2] >= 1 && Imagem[(int) newIndexCorner3] >= 1 && Imagem[(int) newIndexCorner4] >= 1)
+                    {
+                        var sum = newIndexCorner1 + newIndexCorner2 + newIndexCorner3 + newIndexCorner4;
+                        ArrayReturn[index] = k / sum;
+                        flag = true; 
+                        break;
+                    }
+
+                }
             }
 
-            var indexDeAlgo = j - 1 + (i - 1) * ImageWid;
-            var indexDeAlgo2 = j + 1 + (i - 1) * ImageWid;
+            if (!flag)
+            {
+                var IndexCorner1 = i - 1 + (j - 1) * ImageWid;
+                var IndexCorner2 = i + 1 + (j - 1) * ImageWid;
 
-            float Media1 = (Imagem[indexDeAlgo] + Imagem[indexDeAlgo2]) / 2; // Média de algo
+                float Media1 = (Imagem[IndexCorner1] + Imagem[IndexCorner2]) / 2; // Média de algo
 
-            var IndexDeAlgo3 = j - 1 + (i + 1) * ImageWid;
+                var IndexCorner3 = i - 1 + (j + 1) * ImageWid;
+                var IndexCorner4 = i + 1 + (j + 1) * ImageWid;
 
-            var IndexDeAlgo4 = j + 1 + (i + 1) * ImageWid;
+                float Media2 = (Imagem[IndexCorner3] + Imagem[IndexCorner4]) / 2; // Média de algo 2
 
-            float Media2 = (Imagem[IndexDeAlgo3] + Imagem[IndexDeAlgo4]) / 2; // Média de algo 2
-
-            ArrayReturn[index] = (Media1 + Media2) / 2; // A lista recebe a soma das médias e divide por 2
+                ArrayReturn[index] = (Media1 + Media2) / 2; // A lista recebe a soma das médias e divide por 2
+                continue;
+            }
         }
     }
 
-    var Imagemm = discretGray(ArrayReturn);
-    
-    img(org.bmp, Imagemm);
+
+    var ImgGray = discretGray(ArrayReturn);
+
+    var Imagemz = img(org.bmp, ImgGray) as Bitmap;
 
     return (org.bmp, ArrayReturn);
+
 }
 
 
 
-(Bitmap bmp, float[] img) outroGatokk((Bitmap bmp, float[] img) org, float v1, float v2)
+(Bitmap bmp, float[] img) RedimensionaImg((Bitmap bmp, float[] img) org, float v1, float v2) 
 {
+    // Recebe uma imagem e um valor para redimensionar uma imagem (resize)
+
     int ImgWid = org.bmp.Width;
     int ImgHei = org.bmp.Height;
     Bitmap Img2 = new Bitmap((int)(v1 * ImgWid),(int)(v2 * ImgHei));
@@ -75,7 +118,7 @@ using System.Runtime.InteropServices;
 
     var ImagemReturn = (Imagem, Img2Size);
 
-    ImagemReturn = affine(ImagemReturn, scale(v1, v2));
+    ImagemReturn = affine(ImagemReturn, scale(v1, v2)); // Redimensiona a nova imagem
     
     return ImagemReturn;
 }
@@ -761,12 +804,13 @@ void showRects((Bitmap bmp, float[] img) t, List<Rectangle> list)
     showBmp(t.bmp);
 }
 
+
 var image = open("shuregui.png");
 
-image = affine(image,
-    translateFromSize(.5f, .5f, image) *
-    rotation(25f) * 
-    translateFromSize(-.5f, -.5f, image)
-    );
+image = RedimensionaImg(image, 1.1f, 1.1f);
+
+image = PreencheMeio(image);
+image = PreencheMeio(image);
+image = PreencheMeio(image);
 
 show(image);
