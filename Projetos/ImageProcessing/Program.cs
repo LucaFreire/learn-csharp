@@ -11,72 +11,105 @@ using System.Runtime.InteropServices;
 {
     float[] Imagem = org.img;
     float[] ArrayReturn = new float[Imagem.Length];
-    int ImageWid = org.bmp.Width; // Substituir
-    int ImageHeight = org.bmp.Height; // Substituir
-    bool flag = false;
+    int ImageWid = org.bmp.Width; 
+    int ImageHeight = org.bmp.Height; 
 
-    for (int j = 5; j < ImageHeight - 5; j++) // Y
+    for (int j = 5; j < ImageHeight - 5; j++)
     {
-        for (int i = 5; i < ImageWid - 5; i++) // X
+        for (int i = 5; i < ImageWid - 5; i++)
         {
 
             int index = i + j * ImageWid;
 
-            if (Imagem[index] == 0f) // P/ não sair do index e apenas pegar pixel preto
+            if (Imagem[index] == 0f) 
             {
-                float newIndexCorner1 = (i - 1) + ((j - 1) * ImageWid);
-                float newIndexCorner2 = (i + 1) + ((j - 1) * ImageWid);
-                float newIndexCorner3 = (i + 1) + ((j + 1) * ImageWid);
-                float newIndexCorner4 = (i + 1) + ((j + 1) * ImageWid);
+                int newIndexCorner1 = (i - 1) + ((j - 1) * ImageWid);
+                int newIndexCorner2 = (i + 1) + ((j - 1) * ImageWid);
+                int newIndexCorner3 = (i + 1) + ((j + 1) * ImageWid);
+                int newIndexCorner4 = (i + 1) + ((j + 1) * ImageWid);
 
                 for (int k = 1; true; k++)
                 {
 
                     if (k % 2 == 0)
                     {
-                        newIndexCorner1 -=  k;
-                        newIndexCorner2 +=  k;
 
-                        newIndexCorner3 -= k;
-                        newIndexCorner4 += k;
+                        if ((newIndexCorner1 -= k) >= 0)
+                            newIndexCorner1 -= k;
+
+                        if ((newIndexCorner2 += k) <= Imagem.Length)
+                            newIndexCorner2 += k;
+
+                        if ((newIndexCorner3 -= k) >= 0)
+                            newIndexCorner3 -= k;
+
+                        if ((newIndexCorner4 += k) <= Imagem.Length)
+                            newIndexCorner4 +=  k;
+
+                        if ((Imagem[newIndexCorner1] >= 1 &&
+                        Imagem[newIndexCorner2] >= 1 &&  
+                        Imagem[newIndexCorner3] >= 1 &&
+                        Imagem[newIndexCorner4] >= 1) || (
+                        ( (newIndexCorner1 -= k) >= 0) ||
+                        ( (newIndexCorner2 += k) <= Imagem.Length) || 
+                        ( (newIndexCorner3 -= k) >= 0) ||
+                        ( (newIndexCorner4 += k) <= Imagem.Length )))
+                        {
+                            float sum = Imagem[newIndexCorner1] + Imagem[newIndexCorner2] +
+                            Imagem[newIndexCorner3] + Imagem[newIndexCorner4];
+                            ArrayReturn[index] = k / sum;
+                            break;
+                        }
 
                         continue;
                     }
 
+                    if ((newIndexCorner1 -= k * ImageWid) >= 0)
                         newIndexCorner1 -= k * ImageWid;
+
+                    if ((newIndexCorner2 -= k * ImageWid) >= 0)
                         newIndexCorner2 -= k * ImageWid;
 
+                    if ((newIndexCorner3 += k * ImageWid) <= Imagem.Length)
                         newIndexCorner3 += k * ImageWid;
+
+                    if ((newIndexCorner4 += k * ImageWid) <= Imagem.Length)
                         newIndexCorner4 += k * ImageWid;
 
-                     
-
-                    if (Imagem[ (int) newIndexCorner1] >= 1 && Imagem[(int) newIndexCorner2] >= 1 && Imagem[(int) newIndexCorner3] >= 1 && Imagem[(int) newIndexCorner4] >= 1)
+                    if ((Imagem[newIndexCorner1] >= 1 &&
+                    Imagem[newIndexCorner2] >= 1 &&  
+                    Imagem[newIndexCorner3] >= 1 &&
+                    Imagem[newIndexCorner4] >= 1) || (
+                    ( (newIndexCorner1 -= k * ImageWid) >= 0) ||
+                    ( (newIndexCorner2 -= k * ImageWid) >= 0) || 
+                    ( (newIndexCorner3 += k * ImageWid) <= Imagem.Length) ||
+                    ( (newIndexCorner4 += k * ImageWid) <= Imagem.Length )))
                     {
-                        var sum = newIndexCorner1 + newIndexCorner2 + newIndexCorner3 + newIndexCorner4;
+                        float sum = Imagem[newIndexCorner1] + Imagem[newIndexCorner2] +
+                        Imagem[newIndexCorner3] + Imagem[newIndexCorner4];
                         ArrayReturn[index] = k / sum;
-                        flag = true; 
                         break;
                     }
 
                 }
             }
 
-            if (!flag)
+            else
             {
-                var IndexCorner1 = i - 1 + (j - 1) * ImageWid;
-                var IndexCorner2 = i + 1 + (j - 1) * ImageWid;
+                // var IndexCorner1 = i - 1 + (j - 1) * ImageWid;
+                // var IndexCorner2 = i + 1 + (j - 1) * ImageWid;
 
-                float Media1 = (Imagem[IndexCorner1] + Imagem[IndexCorner2]) / 2; // Média de algo
+                // float Media1 = (Imagem[IndexCorner1] + Imagem[IndexCorner2]) / 2; // Média de algo
 
-                var IndexCorner3 = i - 1 + (j + 1) * ImageWid;
-                var IndexCorner4 = i + 1 + (j + 1) * ImageWid;
+                // var IndexCorner3 = i - 1 + (j + 1) * ImageWid;
+                // var IndexCorner4 = i + 1 + (j + 1) * ImageWid;
 
-                float Media2 = (Imagem[IndexCorner3] + Imagem[IndexCorner4]) / 2; // Média de algo 2
+                // float Media2 = (Imagem[IndexCorner3] + Imagem[IndexCorner4]) / 2; // Média de algo 2
 
-                ArrayReturn[index] = (Media1 + Media2) / 2; // A lista recebe a soma das médias e divide por 2
-                continue;
+                ArrayReturn[index] = Imagem[index];  // A lista recebe a soma das médias e divide por 2
+                
             }
+            
         }
     }
 
@@ -122,11 +155,6 @@ using System.Runtime.InteropServices;
     
     return ImagemReturn;
 }
-
-
-
-
-
 
 
 (Bitmap bmp, float[] img) Mineaffine((Bitmap bmp, float[] img) t, params float[] p)
@@ -809,8 +837,6 @@ var image = open("shuregui.png");
 
 image = RedimensionaImg(image, 1.1f, 1.1f);
 
-image = PreencheMeio(image);
-image = PreencheMeio(image);
 image = PreencheMeio(image);
 
 show(image);
