@@ -7,6 +7,61 @@ using System.Drawing.Imaging;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 
+ byte[][] PaletaImg((Bitmap bmp, float[] img) t, int points)
+{
+    var imgD = new int[t.img.Length];
+    var imgC = new float[t.img.Length];
+    int[] Index = new int[t.img.Length];
+    byte[,] cores = new byte[points,3];
+
+    Random r = new Random();
+    
+    for (int i = 0; i < points; i++) // getting different colors
+    {
+        for (int j = 0; j < 3; j++)
+            cores[i,j] =  (byte) r.Next(255);
+    }
+
+    for (int j = 0; j < t.bmp.Height; j++)
+    {
+        for (int i = 0; i < t.bmp.Width; i++)
+        {
+            for (int cor = 0; cor < cores.Length; cor++)
+            {
+                int ind = i+j*t.bmp.Width;
+                int green = ind - (ind % 3);
+                int blue = green + 1;
+                int red = green + 2;
+
+                if (imgD[ind] == 0 || imgD[ind] > 
+                (Math.Pow(t.img[green] - cores[cor,0], 2) + 
+                Math.Pow(t.img[blue] - cores[cor,1], 2) + 
+                Math.Pow(t.img[red] - cores[cor,2], 2)))
+                {
+                    imgD[ind] = (int)(Math.Pow(t.img[green] - cores[cor,0], 2) + 
+                    Math.Pow(t.img[blue] - cores[cor,1], 2) + 
+                    Math.Pow(t.img[red] - cores[cor,2], 2));
+
+                    imgC[ind] = t.img[green];
+                    imgC[ind + 1] = t.img[blue];
+                    imgC[ind + 2] = t.img[red];
+                }
+
+            }
+            
+        }
+    }
+    return cores;
+
+}
+
+
+
+
+
+
+
+
 (Bitmap bmp, float[] img) PreencheMeio((Bitmap bmp, float[] img) org) 
 {
     float[] Imagem = org.img;
@@ -18,7 +73,6 @@ using System.Runtime.InteropServices;
     {
         for (int i = 5; i < ImageWid - 5; i++)
         {
-
             int index = i + j * ImageWid;
 
             if (Imagem[index] == 0f) 
@@ -30,10 +84,8 @@ using System.Runtime.InteropServices;
 
                 for (int k = 1; true; k++)
                 {
-
                     if (k % 2 == 0)
                     {
-
                         if ((newIndexCorner1 -= k) >= 0)
                             newIndexCorner1 -= k;
 
@@ -46,10 +98,10 @@ using System.Runtime.InteropServices;
                         if ((newIndexCorner4 += k) <= Imagem.Length)
                             newIndexCorner4 +=  k;
 
-                        if ((Imagem[newIndexCorner1] >= 1 &&
-                        Imagem[newIndexCorner2] >= 1 &&  
-                        Imagem[newIndexCorner3] >= 1 &&
-                        Imagem[newIndexCorner4] >= 1) || (
+                        if ((Imagem[newIndexCorner1] > 0 &&
+                        Imagem[newIndexCorner2] > 0 &&  
+                        Imagem[newIndexCorner3] > 0 &&
+                        Imagem[newIndexCorner4] > 0) || (
                         ( (newIndexCorner1 -= k) >= 0) ||
                         ( (newIndexCorner2 += k) <= Imagem.Length) || 
                         ( (newIndexCorner3 -= k) >= 0) ||
@@ -60,7 +112,6 @@ using System.Runtime.InteropServices;
                             ArrayReturn[index] = k / sum;
                             break;
                         }
-
                         continue;
                     }
 
@@ -76,10 +127,10 @@ using System.Runtime.InteropServices;
                     if ((newIndexCorner4 += k * ImageWid) <= Imagem.Length)
                         newIndexCorner4 += k * ImageWid;
 
-                    if ((Imagem[newIndexCorner1] >= 1 &&
-                    Imagem[newIndexCorner2] >= 1 &&  
-                    Imagem[newIndexCorner3] >= 1 &&
-                    Imagem[newIndexCorner4] >= 1) || (
+                    if ((Imagem[newIndexCorner1] > 1 &&
+                    Imagem[newIndexCorner2] > 1 &&  
+                    Imagem[newIndexCorner3] > 1 &&
+                    Imagem[newIndexCorner4] > 1) || (
                     ( (newIndexCorner1 -= k * ImageWid) >= 0) ||
                     ( (newIndexCorner2 -= k * ImageWid) >= 0) || 
                     ( (newIndexCorner3 += k * ImageWid) <= Imagem.Length) ||
@@ -90,10 +141,8 @@ using System.Runtime.InteropServices;
                         ArrayReturn[index] = k / sum;
                         break;
                     }
-
                 }
             }
-
             else
             {
                 // var IndexCorner1 = i - 1 + (j - 1) * ImageWid;
@@ -107,12 +156,9 @@ using System.Runtime.InteropServices;
                 // float Media2 = (Imagem[IndexCorner3] + Imagem[IndexCorner4]) / 2; // Média de algo 2
 
                 ArrayReturn[index] = Imagem[index];  // A lista recebe a soma das médias e divide por 2
-                
             }
-            
         }
     }
-
 
     var ImgGray = discretGray(ArrayReturn);
 
@@ -121,8 +167,6 @@ using System.Runtime.InteropServices;
     return (org.bmp, ArrayReturn);
 
 }
-
-
 
 (Bitmap bmp, float[] img) RedimensionaImg((Bitmap bmp, float[] img) org, float v1, float v2) 
 {
@@ -155,7 +199,6 @@ using System.Runtime.InteropServices;
     
     return ImagemReturn;
 }
-
 
 (Bitmap bmp, float[] img) Mineaffine((Bitmap bmp, float[] img) t, params float[] p)
 {
