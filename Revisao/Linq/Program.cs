@@ -53,6 +53,7 @@ void Exemplo()
 // Exemplo();
 
 
+
 // 1 - Liste todos os produtos do estoque, do mais barato ao mais caro.
 void Exer1()
 {
@@ -77,6 +78,7 @@ void Exer1()
 // Exer1();
 
 
+
 // 2 - Liste os produtos por ordem alfabética.
 void Exer2()
 {
@@ -88,6 +90,7 @@ void Exer2()
 }
 
 // Exer2();
+
 
 
 // 3 - Encontre a média de preço dos produtos, mostre a média, e todos os produtos com o preço acima dela
@@ -104,6 +107,7 @@ void Exer3()
 // Exer3();
 
 
+
 // 4 - Liste os produtos vencidos
 void Exer4()
 {
@@ -117,6 +121,7 @@ void Exer4()
 // Exer4();
 
 
+
 // 5 - Implemente uma função que receba a lista de estoque e uma data utilizando o tipo DateTime, 
 // esta função deve retornar uma lista que contendo todos os produtos que irão expirar até esta data
 // Ex: WillExpirate(List<estoque> estoque, DateTime dataDesejada)
@@ -125,24 +130,36 @@ List<Produto> WillExpirate(List<Produto> lista, DateTime date) // yy/mm/dd
     return lista.Where(x => DateTime.Today < x.DataValidade && x.DataValidade < date).ToList();
 }
 
-List<Produto> exer5 = WillExpirate(estoque, new DateTime(2023,10,30)); // yy/mm/dd
+// List<Produto> exer5 = WillExpirate(estoque, new DateTime(2023,10,30)); // yy/mm/dd
 
-Console.WriteLine("5 - Produtos que irão expirar até esta data");
-foreach (var item in exer5)
-    Console.WriteLine(item);
+// Console.WriteLine("5 - Produtos que irão expirar até esta data");
+// foreach (var item in exer5)
+//     Console.WriteLine(item);
+
 
 
 // 6 - Implemente uma função chamada valorMínimo, que tenha como parâmetro a lista de estoque e o valor mínimo
 // que a lista deve filtrar, utilize o LINQ para retornar todos os valores acima do valorMínimo
 // Ex: getByMinValue(List<estoque> estoque, double minValue)
-
 List<Produto> getByMinValue(List<Produto> lista, double minValue) => lista.Where(x => x.Valor > minValue).ToList(); 
+
+// var exer6 = getByMinValue(estoque, 19);
+
+// Console.WriteLine("6 - Retornar todos os valores acima do valor mínimo");
+// foreach (var item in exer6)
+//     Console.WriteLine(item);
+
 
 
 // 7 - Assim como no exercício 6, implemente agora uma função que pegue todos os valores menores que o valor máximo
 // Ex: getByMaxValue(List<estoque> estoque, double maxValue)
-
 List<Produto> getByMaxValue(List<Produto> lista, double maxValue) => lista.Where(x => x.Valor < maxValue).ToList(); 
+
+// var exer7 = getByMaxValue(estoque, 19);
+
+// Console.WriteLine("7 - Implemente agora uma função que pegue todos os valores menores que o valor máximo");
+// foreach (var item in exer7)
+//     Console.WriteLine(item);
 
 
 
@@ -160,8 +177,6 @@ public class Produto
         this.DataValidade = validade;
     }
 
-    public override string ToString()
-    {
-        return this.Nome + " - R$ " + this.Valor + " - Data Validade " + this.DataValidade;
-    }
+    public override string ToString() => this.Nome + " - R$ " + this.Valor + " - Data Validade " + this.DataValidade;
+    
 }

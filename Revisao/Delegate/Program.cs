@@ -14,7 +14,7 @@ void Exemplo2()
 
     var x = MyDelegate.formatNumber(lista, quadrado);
 
-    // Posso chamar função por fora também, apenas tenho que certificasse dos requisítos(int se for int etc.)
+    // É possível chamar uma função por fora também, apenas certifica-se dos requisitos(int se for int etc.)
     // var y = MyDelegate.formatNumber(lista, MyDelegate.doublez);  
 
     foreach (var item in x)
