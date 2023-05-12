@@ -2,10 +2,10 @@ public class Army
 {
     public int Soldiers { get; set; }
     public int[] DataDice { get; set; }
-    public Army(int Soldiers, int[] datadice)
+    public Army(int Soldiers)
     {
         this.Soldiers = Soldiers;
-        this.DataDice = datadice;
+        this.DataDice = new int[3];
     }
     public void getDataDice(Random rand)
     {

@@ -2,55 +2,45 @@
 using System.Threading.Tasks;
 using System.Collections.Concurrent;
 
-Random rand = new Random();
+Random Rand = new Random();
 
-Army attack = new Army(857, new int[3]);
-Army defensor = new Army(500, new int[3]);
+Army Attackers = new Army(857);
+Army Defensors = new Army(450);
 
-int Battle(Army defensor, Army attack)
+double Count = 0;
+double N = 10000;
+
+for (int i = 0; i < N; i++)
+    Count += Battle(Defensors, Attackers);
+
+Console.WriteLine($"N: {N}\nWin Rate Attackersers: {Count / N * 100:F2} %");
+Console.WriteLine($"Win Rate Defensorss: {(N - Count) / N * 100:F2} %");
+
+
+int Battle(Army Defensors, Army Attackers)
 {
-    
     bool isFighting;
+    int[] QtdSoldiers = new int[]{ Defensors.Soldiers, Attackers.Soldiers };
 
     do
     {
-        defensor.getDataDice(rand);
-        attack.getDataDice(rand);
+        Defensors.getDataDice(Rand);
+        Attackers.getDataDice(Rand);
 
         for (int i = 0; i < 3; i++)
         {
-            attack.Soldiers -= attack.DataDice[i] > defensor.DataDice[i] ? 0 : 1;
-            defensor.Soldiers -= defensor.DataDice[i] >= attack.DataDice[i] ? 0 : 1; 
+            Attackers.Soldiers -= Attackers.DataDice[i] > Defensors.DataDice[i] ? 0 : 1;
+            Defensors.Soldiers -= Defensors.DataDice[i] >= Attackers.DataDice[i] ? 0 : 1; 
         }
         
-        isFighting = defensor.Soldiers <= 0 || attack.Soldiers <= 1 ? false : true;
+        isFighting = Defensors.Soldiers <= 0 || Attackers.Soldiers <= 1 ? false : true;
     
     } while(isFighting);
 
-    string win = defensor.Soldiers > attack.Soldiers ? "D" : "A";
+    string win = Defensors.Soldiers > Attackers.Soldiers ? "D" : "A";
+
+    Defensors.Soldiers = QtdSoldiers[0];
+    Attackers.Soldiers = QtdSoldiers[1];
 
     return win == "A" ? 1 : 0;
-
-    // ShowStatistics(defensor, attack);'
-
 }
-
-void ShowStatistics(Army defensor, Army attack) 
-{
-    Console.WriteLine($"Qtd Defensors remain: {defensor.Soldiers}\nQtd Attack remain: {attack.Soldiers}");
-    Console.WriteLine(defensor.Soldiers > attack.Soldiers ? "Defensors Win!" : "Attackers Win!");
-}
-
-
-double count = 0;
-double N = 1000;
-
-for (int i = 0; i < 2; i++)
-{
-    Battle(defensor, attack);
-    ShowStatistics(defensor, attack);
-}
-
-
-Console.WriteLine($"Win Rate Attackers: {count / N} %");
-Console.WriteLine($"Win Rate Defensors: {(N - count) / N} %");
