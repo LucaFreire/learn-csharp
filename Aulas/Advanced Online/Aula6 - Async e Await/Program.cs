@@ -1,8 +1,16 @@
 ﻿var ovos = new Ovos();
-var farinha = new Farinha(); 
+var farinha = new Farinha();
 
+bool flag = true;
 // ExemploPao();
-ExemplopaoAsync();
+while (true)
+{
+    if (flag)
+    {
+        ExemplopaoAsync();
+        flag = false;
+    }
+}
 
 void ExemploPao() // Normal way to do functions, the code is executed sequentially
 {
@@ -26,6 +34,7 @@ async void ExemplopaoAsync() // Async method
     Ovos ovoss = await tarefaOvos; // await the task to finalize, the code doesn't start if the task isn't finished
     Farinha farinhaa = await tarefaFarinha;
 
+    System.Console.WriteLine("test");
     FazerPao(farinhaa, ovoss); 
 }
 
