@@ -1,15 +1,12 @@
 ﻿var ovos = new Ovos();
 var farinha = new Farinha();
 
-bool flag = true;
 // ExemploPao();
+ExemplopaoAsync();
+
 while (true)
 {
-    if (flag)
-    {
-        ExemplopaoAsync();
-        flag = false;
-    }
+
 }
 
 void ExemploPao() // Normal way to do functions, the code is executed sequentially
