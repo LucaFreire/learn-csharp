@@ -17,6 +17,16 @@ public class BrazilWagePaymentProcess : WagePaymentProcess
         args.Company.Money -= 1.45m * args.Employe.Wage + 500;
     }
 }
+
+public class BrazilContractProcess : ContractProcess
+{
+    public override string Title => "Contratar Brazil";
+ 
+    public override void Apply(ContractProcessArgs args)
+    {
+        args.Company.Money -= 1.45m * args.Employe.Wage + 100;
+    }
+}
  
 public class BrazilProcessFactory : IProcessFactory
 {
@@ -25,4 +35,6 @@ public class BrazilProcessFactory : IProcessFactory
  
     public WagePaymentProcess CreateWagePaymentProcess()
         => new BrazilWagePaymentProcess();
+    public ContractProcess CreateProcess()
+        => new BrazilContractProcess();
 }

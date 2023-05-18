@@ -17,6 +17,16 @@ public class EUAWagePaymentProcess : WagePaymentProcess
         args.Company.Money -= 1.50m * args.Employe.Wage + 500;
     }
 }
+
+public class EUAContractProcess : ContractProcess
+{
+    public override string Title => "Pagamento de Salário EUA";
+ 
+    public override void Apply(ContractProcessArgs args)
+    {
+        args.Company.Money -= 1.50m * args.Employe.Wage + 900;
+    }
+}
  
 public class EUAProcessFactory : IProcessFactory
 {
@@ -25,4 +35,7 @@ public class EUAProcessFactory : IProcessFactory
  
     public WagePaymentProcess CreateWagePaymentProcess()
         => new EUAWagePaymentProcess();
+
+    public ContractProcess CreateProcess()
+        => new EUAContractProcess();
 }

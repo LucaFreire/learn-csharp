@@ -13,13 +13,19 @@ public class Company
  
     private List<Employe> employes = new List<Employe>();
     public IEnumerable<Employe> Employes => employes;
- 
     private DismissalProcess dismissalProcess = null;
     private WagePaymentProcess wagePaymentProcess = null;
+    private ContractProcess contractProcess = null;
  
     public void Contract(Employe employe)
     {
+        ContractProcessArgs args = new ContractProcessArgs();
+        
+        args.Employe = employe;
+        args.Company = this;
+
         employes.Add(employe);
+        contractProcess.Apply(args);
     }
  
     public void Dismiss(string name)
@@ -68,6 +74,7 @@ public class Company
         {
             company.dismissalProcess = factory.CreateDismissalProcess();
             company.wagePaymentProcess = factory.CreateWagePaymentProcess();
+            company.contractProcess = factory.CreateProcess();
             return this;
         }
  

@@ -12,3 +12,8 @@ public abstract class WagePaymentProcess : Process
 {
     public abstract void Apply(WagePaymentArgs args);
 }
+
+public abstract class ContractProcess : Process
+{
+    public abstract void Apply(ContractProcessArgs args);
+}
