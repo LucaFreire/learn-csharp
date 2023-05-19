@@ -3,7 +3,7 @@
     lembra o Singleton, porém pode existir muitas vezes no programa
 */
 
-public static class FlyWeigth
+public static class FlyWeight
 {
     private static MyObjectA objA = null;
     public static MyObjectA ObjA

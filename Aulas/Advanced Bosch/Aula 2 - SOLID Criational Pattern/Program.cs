@@ -41,18 +41,18 @@ void ExampleFactory()
     // Dependendo do input, um objeto é criado de uma maneira totalmente diferente 
 }
 
-// Example 4 - FlyWeigth
-void ExampleFlyWeigth()
+// Example 4 - FlyWeight
+void ExampleFlyWeight()
 {
     List<MyObject> lista = new List<MyObject>();
 
-    lista.Add(FlyWeigth.ObjA);
-    lista.Add(FlyWeigth.ObjA);
-    lista.Add(FlyWeigth.ObjB);
-    lista.Add(FlyWeigth.ObjB);
+    lista.Add(FlyWeight.ObjA);
+    lista.Add(FlyWeight.ObjA);
+    lista.Add(FlyWeight.ObjB);
+    lista.Add(FlyWeight.ObjB);
 
     foreach (var item in lista)
         item.Show();
 }
 
-ExampleFlyWeigth();
+ExampleFlyWeight();
