@@ -1,0 +1,15 @@
+C:\Users\Aluno\Desktop\Temp\bin\Debug\net7.0\Temp.exe
+C:\Users\Aluno\Desktop\Temp\bin\Debug\net7.0\Temp.deps.json
+C:\Users\Aluno\Desktop\Temp\bin\Debug\net7.0\Temp.runtimeconfig.json
+C:\Users\Aluno\Desktop\Temp\bin\Debug\net7.0\Temp.dll
+C:\Users\Aluno\Desktop\Temp\bin\Debug\net7.0\Temp.pdb
+C:\Users\Aluno\Desktop\Temp\obj\Debug\net7.0\Temp.csproj.AssemblyReference.cache
+C:\Users\Aluno\Desktop\Temp\obj\Debug\net7.0\Temp.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Aluno\Desktop\Temp\obj\Debug\net7.0\Temp.AssemblyInfoInputs.cache
+C:\Users\Aluno\Desktop\Temp\obj\Debug\net7.0\Temp.AssemblyInfo.cs
+C:\Users\Aluno\Desktop\Temp\obj\Debug\net7.0\Temp.csproj.CoreCompileInputs.cache
+C:\Users\Aluno\Desktop\Temp\obj\Debug\net7.0\Temp.dll
+C:\Users\Aluno\Desktop\Temp\obj\Debug\net7.0\refint\Temp.dll
+C:\Users\Aluno\Desktop\Temp\obj\Debug\net7.0\Temp.pdb
+C:\Users\Aluno\Desktop\Temp\obj\Debug\net7.0\Temp.genruntimeconfig.cache
+C:\Users\Aluno\Desktop\Temp\obj\Debug\net7.0\ref\Temp.dll
