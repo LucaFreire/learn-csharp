@@ -24,7 +24,6 @@ void ExampleDecorator()
     Console.WriteLine(d4);
 }
 
-
 void ExampleComposite()
 {
 
