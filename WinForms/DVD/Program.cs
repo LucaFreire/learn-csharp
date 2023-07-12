@@ -45,8 +45,8 @@ static class Program
             x += sumX;
             y += sumY;
 
-            if(x == 0 && y == 0 || x == 0 && y == form.Height || x == form.Width && y == form.Height || x == form.Width && y == 0 )
-                MessageBox.Show("Né");
+            // if(x == 0 && y == 0 || x == 0 && y == form.Height || x == form.Width && y == form.Height || x == form.Width && y == 0 )
+            //     MessageBox.Show("Né");
 
             pn.Location = new Point(x, y);
         };
