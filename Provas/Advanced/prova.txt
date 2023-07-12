@@ -1,0 +1,83 @@
+1)
+
+  Singleton -> Um sistma que implmenta XXX
+
+  Builder -> A inicialização de um sistema que pode usar Mongo...
+
+  Strategy -> Um bot de apostas esportivas que tem técnicas...
+
+  Facade -> Usar algumas funções de uma comlpexa biblioteca...
+
+  Composite -> Um sistema para representar uma empresa com vários níveis de camada...
+
+  Bridge -> Uma aplicação para gerenciar hospitais...
+
+  Memento -> Um sistema de edição de texto...
+
+2)
+  a)
+
+    i) Apropriado pois o prototype clona o próprio obj 
+  
+    ii) Apropriado pois o prototype pode clonar o monstro antes de morrer e utilizar suas 
+      características inicíais(clone) após renascer
+
+    iii) Não apropriado, nessa ocasião é melhor utilizar o Singleton. 
+  
+  b)
+
+    i) Apropriado de trabalhado junto com o Strategy, pois o state apenas controla o contexto
+    e o Strategy muda sua funcionalidade dependendo desse contexto
+
+    ii) Não apropriado X
+
+    iii) Não apropriado X
+  
+  c)
+
+    i) Apropriado, pois dependendo da plataforma escolhida o "obj" retornado pode ser totalmente 
+    diferente de qualquer outra plataforma
+
+    ii) Apropriado, pois após escolher o template as funcionalidades podem agir totalmente 
+      diferentes uma das outras
+
+    iii) Não apropriado, para isso existe um padrão criacional que facilita essa configuração de API (builder)
+
+5)
+  a) Já é Thread-Safe
+  b) InterLock
+  c) CurrentQueue
+  d) lock
+
+7)
+  Logo quando chamado o ToListAsync é retornado uma "promessa" (Task), para executar essa Task é necessário utilizar a palavra await.
+  O await vai receber uma resposta logo quando a Task ser finalizada e assim o valor pode armazenado na lista criada pelo usuário.
+  É importante ressaltar que é apenas possívil utilizar o await quando a função em seu corpo contenha a palavra reservada async
+  (quando utilizado no program, automaticamente o program se torna async).
+
+8) 
+  '; create table VoceFoiGoiabado ( PerdeuPlayboy VARCHAR(MAX) ); --
+
+9)
+  a)
+    Uma das maneiras possíveis de se gerenciar permissões de um site, é trabalhar com tokens de dados e para ser ainda mais seguro,
+    sempre optar trabalhar com o jwt. Onde nesse jwt pode conter informações boolenas de permissões, por exemplo:
+    quando logado no sistema, é armazenado no session storage do seu navegador seus valores de como um usuário. Com esses dados, logo
+    após qualquer requisição, seus dados são validados no Back-End evitando assim que qualquer requisição não permitida seja barrada pelo Back.
+  
+  b)
+    O sistema de armazenamento de dados sensíveis no banco de dados pode ser realizado com o Salting, Hash ou SlowHash(melhor). Isso se deve, pois se algum dia
+    seu sistema ser invadido, o hacker não necessáriamente vai saber todos os logins e senhas dos usuários salvos no seu banco de dados, pois o criminoso 
+    vai ter uma série de processos demorados para tentar quebrar essas senhas armazenadas no seu DB.
+
+  c)
+    O sistema de token JWT é muito utilizado para esconder dados do usuário no front, pois mesmo se o inidivíduo tiver acesso ao JWT e conseguir descriptograf uma 
+    verificação de validação no Back-end é realizada a cada requisição, tornando-o assim, um sistema que esconde dados de seu usuário e evita alterações feitas pelo 
+    Front-End sem a devida permissão. 
+  
+  d)
+    Uma maneira de assegurar que essas mensagens serão enviadas e recebidas de maneira segura é a criptografia de dados, onde o destinatário da mensagem contém uma senha
+    para descriptografar a senha, fazendo com que caso vaze a mensagem para terceiros, é necessário essa senha para descobrir o que está escrito na mensagem de texto. É importante
+    ressaltar também que o sistema deve conter uma segurança a mais contra o "Main in the Middle" que seu principal papel no esquema de quebra de segurança, é atuar como o destinatário.
+
+
