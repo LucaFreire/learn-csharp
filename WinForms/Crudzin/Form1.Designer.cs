@@ -37,20 +37,28 @@
             this.label3 = new System.Windows.Forms.Label();
             this.ProductPrice = new System.Windows.Forms.TextBox();
             this.ProductName = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.tabControl = new System.Windows.Forms.TabControl();
+            this.Products = new System.Windows.Forms.TabPage();
+            this.Stock = new System.Windows.Forms.TabPage();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+            this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.Panel2.SuspendLayout();
+            this.splitContainer1.SuspendLayout();
+            this.tabControl.SuspendLayout();
+            this.Products.SuspendLayout();
             this.SuspendLayout();
             // 
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 0);
+            this.dataGridView1.Location = new System.Drawing.Point(-6, -6);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowTemplate.Height = 25;
-            this.dataGridView1.Size = new System.Drawing.Size(744, 450);
+            this.dataGridView1.Size = new System.Drawing.Size(535, 450);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
@@ -63,26 +71,26 @@
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.ProductPrice);
             this.panel1.Controls.Add(this.ProductName);
-            this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.label1);
-            this.panel1.Location = new System.Drawing.Point(577, 0);
+            this.panel1.Location = new System.Drawing.Point(0, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(167, 450);
+            this.panel1.Size = new System.Drawing.Size(205, 447);
             this.panel1.TabIndex = 1;
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.SystemColors.MenuHighlight;
             this.panel2.Location = new System.Drawing.Point(0, 196);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(167, 10);
+            this.panel2.Size = new System.Drawing.Size(205, 10);
             this.panel2.TabIndex = 8;
             // 
             // DeleteProduct
             // 
-            this.DeleteProduct.Location = new System.Drawing.Point(44, 224);
+            this.DeleteProduct.Location = new System.Drawing.Point(46, 223);
             this.DeleteProduct.Name = "DeleteProduct";
-            this.DeleteProduct.Size = new System.Drawing.Size(75, 23);
+            this.DeleteProduct.Size = new System.Drawing.Size(117, 23);
             this.DeleteProduct.TabIndex = 7;
             this.DeleteProduct.Text = "Delete";
             this.DeleteProduct.UseVisualStyleBackColor = true;
@@ -90,9 +98,9 @@
             // 
             // CreateProduct
             // 
-            this.CreateProduct.Location = new System.Drawing.Point(15, 158);
+            this.CreateProduct.Location = new System.Drawing.Point(46, 157);
             this.CreateProduct.Name = "CreateProduct";
-            this.CreateProduct.Size = new System.Drawing.Size(140, 23);
+            this.CreateProduct.Size = new System.Drawing.Size(117, 23);
             this.CreateProduct.TabIndex = 6;
             this.CreateProduct.Text = "Create";
             this.CreateProduct.UseVisualStyleBackColor = true;
@@ -122,7 +130,7 @@
             // 
             this.ProductPrice.Location = new System.Drawing.Point(35, 116);
             this.ProductPrice.Name = "ProductPrice";
-            this.ProductPrice.Size = new System.Drawing.Size(100, 23);
+            this.ProductPrice.Size = new System.Drawing.Size(140, 23);
             this.ProductPrice.TabIndex = 3;
             this.ProductPrice.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
@@ -130,18 +138,8 @@
             // 
             this.ProductName.Location = new System.Drawing.Point(35, 65);
             this.ProductName.Name = "ProductName";
-            this.ProductName.Size = new System.Drawing.Size(100, 23);
+            this.ProductName.Size = new System.Drawing.Size(140, 23);
             this.ProductName.TabIndex = 2;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(44, 411);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(91, 15);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Add no Estoque";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // label1
             // 
@@ -153,18 +151,74 @@
             this.label1.Text = "Create A New Product";
             this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
+            // splitContainer1
+            // 
+            this.splitContainer1.IsSplitterFixed = true;
+            this.splitContainer1.Location = new System.Drawing.Point(6, 6);
+            this.splitContainer1.Name = "splitContainer1";
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.Controls.Add(this.dataGridView1);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.Controls.Add(this.panel1);
+            this.splitContainer1.Size = new System.Drawing.Size(744, 450);
+            this.splitContainer1.SplitterDistance = 535;
+            this.splitContainer1.TabIndex = 2;
+            this.splitContainer1.SplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.splitContainer1_SplitterMoved);
+            // 
+            // tabControl
+            // 
+            this.tabControl.Controls.Add(this.Products);
+            this.tabControl.Controls.Add(this.Stock);
+            this.tabControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControl.Location = new System.Drawing.Point(0, 0);
+            this.tabControl.Name = "tabControl";
+            this.tabControl.SelectedIndex = 0;
+            this.tabControl.Size = new System.Drawing.Size(759, 484);
+            this.tabControl.TabIndex = 3;
+            // 
+            // Products
+            // 
+            this.Products.Controls.Add(this.splitContainer1);
+            this.Products.Location = new System.Drawing.Point(4, 24);
+            this.Products.Name = "Products";
+            this.Products.Padding = new System.Windows.Forms.Padding(3);
+            this.Products.Size = new System.Drawing.Size(751, 456);
+            this.Products.TabIndex = 0;
+            this.Products.Text = "Products";
+            this.Products.UseVisualStyleBackColor = true;
+            this.Products.Click += new System.EventHandler(this.tabPage1_Click);
+            // 
+            // Stock
+            // 
+            this.Stock.Location = new System.Drawing.Point(4, 24);
+            this.Stock.Name = "Stock";
+            this.Stock.Padding = new System.Windows.Forms.Padding(3);
+            this.Stock.Size = new System.Drawing.Size(811, 513);
+            this.Stock.TabIndex = 1;
+            this.Stock.Text = "Stock";
+            this.Stock.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(744, 450);
-            this.Controls.Add(this.panel1);
-            this.Controls.Add(this.dataGridView1);
+            this.ClientSize = new System.Drawing.Size(759, 484);
+            this.Controls.Add(this.tabControl);
             this.Name = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
+            this.splitContainer1.ResumeLayout(false);
+            this.tabControl.ResumeLayout(false);
+            this.Products.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -174,7 +228,6 @@
         private DataGridView dataGridView1;
         private Panel panel1;
         private Label label1;
-        private Label label2;
         private TextBox ProductPrice;
         private TextBox ProductName;
         private Label label3;
@@ -182,5 +235,9 @@
         private Button CreateProduct;
         private Button DeleteProduct;
         private Panel panel2;
+        private SplitContainer splitContainer1;
+        private TabControl tabControl;
+        private TabPage Products;
+        private TabPage Stock;
     }
 }

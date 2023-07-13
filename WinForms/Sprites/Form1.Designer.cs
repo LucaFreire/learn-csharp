@@ -1,4 +1,4 @@
-﻿namespace Components;
+﻿namespace Sprites;
 
 partial class Form1
 {

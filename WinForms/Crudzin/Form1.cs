@@ -42,7 +42,7 @@ namespace Crudzin
                 return;
             }
 
-            var nameIsNumber = int.TryParse(ProductName.Text, out int _);
+            var nameIsNumber = float.TryParse(ProductName.Text, out float _);
             if (nameIsNumber)
             {
                 MessageBox.Show("You can't insert a new product with an number as a Name!",
@@ -52,7 +52,7 @@ namespace Crudzin
                 return;
             }
 
-            var priceIsNumber = int.TryParse(ProductPrice.Text, out int price);
+            var priceIsNumber = float.TryParse(ProductPrice.Text, out float price);
             if (!priceIsNumber)
             {
                 MessageBox.Show("You can't insert a new product with an not valid number in the Price!",
@@ -147,5 +147,28 @@ namespace Crudzin
         { }
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         { }
+
+        private void AddAtStock_Click(object sender, EventArgs e)
+        {
+           
+
+
+
+        }
+
+        private void splitContainer1_SplitterMoved(object sender, SplitterEventArgs e)
+        {
+
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void tabPage1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
