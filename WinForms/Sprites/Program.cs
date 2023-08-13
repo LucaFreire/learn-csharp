@@ -8,18 +8,27 @@ static class Program
     static void Main()
     {
         ApplicationConfiguration.Initialize();
-        Form form = new Form();
+        Form form = new Form()
+        {
+            TransparencyKey = Color.Black,
+            WindowState = FormWindowState.Maximized,
+            FormBorderStyle = FormBorderStyle.None,
+            BackColor = Color.Black
+        };
 
-        form.WindowState = FormWindowState.Maximized;
 
         Graphics? g = null;
         Bitmap? bmp = new Bitmap(@"Mega.png");
         var tm = new Timer();
-        var pb = new PictureBox();
+
+        var pb = new PictureBox()
+        {
+            SizeMode = PictureBoxSizeMode.StretchImage,
+            Dock = DockStyle.Fill,
+            BackColor = Color.Transparent
+        };
+
         form.Controls.Add(pb);
-
-        pb.Dock = DockStyle.Fill;
-
         Queue<DateTime> queue = new Queue<DateTime>();
         queue.Enqueue(DateTime.Now);
 
@@ -65,8 +74,9 @@ static class Program
         {
             Bitmap? bmp2 = new Bitmap(pb.Width, pb.Height);
 
+
             g = Graphics.FromImage(bmp2);
-            g.Clear(Color.Blue);
+            g.Clear(Color.Transparent);
             pb.Image = bmp2;
             tm.Start();
         };
@@ -92,7 +102,7 @@ static class Program
                     indexFrame = 0;
                 else
                     indexFrame--;
-                
+
                 positionX -= 50;
             }
 
