@@ -71,7 +71,6 @@ static class Program
             tm.Start();
         };
 
-
         form.KeyDown += (s, e) =>
         {
             if (e.KeyCode == Keys.Escape)
@@ -89,10 +88,9 @@ static class Program
             if (e.KeyCode == Keys.A)
             {
                 if (indexFrame <= 0)
-                    indexFrame = 0;
+                    indexFrame = Frames.Length - 1;
                 else
                     indexFrame--;
-                
                 positionX -= 50;
             }
 
@@ -113,7 +111,6 @@ static class Program
                     indexFrame++;
                 positionY += 50;
             }
-
         };
         Application.Run(form);
     }
